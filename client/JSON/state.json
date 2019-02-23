@@ -11,7 +11,7 @@
     "rations": 1
   }],
   "distance": 0,
-  "items": [],
+  "items": [{"food":0},{"clothes": 0}],
   "currentPace": 20,
   "sled": true,
   "dogs": 0,
