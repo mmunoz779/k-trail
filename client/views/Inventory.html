@@ -19,19 +19,16 @@
     <p>Dogs: {{state.dogs}}</p>
     <p>Sled Parts: {{state.sled}}</p>
     <p>Clothes: {{state.clothes}}</p>
-    <p>Copper: {{state.copper}}</p>
-    <button onclick="window.location.href='/DayPrompt'">Return to Traveling</button>
+    <p>Copper: {{state.money}}</p>
+    <button ng-click='DayPrompt()'>Get back on the road</button>
 </div>
 
 <script>
     var app = angular.module('myApp', []);
-    app.controller('inventory', function ($scope, $http) {
-        $scope.state={
-            food:'200',
-            dogs:'5',
-            sled:'2',
-            clothes:'1',
-            copper:'500',
+    app.controller('inventory', function ($scope, $http,$window) {
+        $scope.returntoday=function() {
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href = '/DayPrompt';
         }
     });
 </script>
