@@ -21,5 +21,16 @@
     <button>Change Food Rations</button>
     <button>Stop to Rest</button>
 
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('WorldData', function ($scope, $http) {
+        $scope.state={
+            weather:'clear',
+            pace:'brisk',
+            distance:'0',
+
+        }
+    });
+</script>
 </body>
 </html>
