@@ -21,6 +21,4 @@ router.use('/*', function (req, res) {
     res.status(404);
     res.send();
 });
-
-});
 module.exports = router;
