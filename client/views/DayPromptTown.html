@@ -22,26 +22,46 @@
     <p>Weather: {{state.weather}}</p>
     <p>Pace: {{state.pace}}</p>
     <p>Distance Traveled: {{state.distance}} miles </p>
-
+</div>
 <br>
 
-<p>You May:</p>
-<button onclick="window.location.href='/DayPrompt'">Start Traveling</button>
-<button onclick="window.location.href='/inventory'">Check Inventory</button>
-<button>Change Pace</button><!-- make popup window-->
-<button onclick="window.location.href='/viewparty'">Party Status</button>
-<button>Stop to Rest</button><!-- make popup window-->
-<button onclick="window.location.href='/shop'">Go Shopping</button>
-</div>
+<p>You may:</p>
+<button ng-click='returntoday()'>Return to Traveling</button>
+<button ng-click='inventory()'>Check Inventory</button>
+<button ng-click='Pace()'>Change Pace</button>
+<button ng-click='viewparty()'>Party Status</button>
+<button ng-click='Rest()'>Stop to Rest</button>
+<button ng-click='shop()'>Go Shopping</button>
+
 <script>
     var app = angular.module('myApp', []);
-    app.controller('WorldData', function ($scope, $http) {
-        $scope.state={
-            weather:'Clear',
-            pace:'Brisk',
-            distance:'0',
-
+    app.controller('WorldData', function ($scope, $http,$window) {
+        $scope.state=JSON.parse(sessionStorage.getItem('state'));
+        $scope.returntoday=function() {
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href = '/DayPrompt';
+        };
+        $scope.inventory=function() {
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href = '/inventory';
+        };
+        $scope.viewparty=function() {
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href = '/viewparty';
+        };
+        $scope.shop=function() {
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href = '/shop';
+        };
+        $scope.Pace=function() {
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href = '/Pace';
         }
+        $scope.Rest=function() {
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href = '/Rest';
+        }
+
     });
 </script>
 </body>
