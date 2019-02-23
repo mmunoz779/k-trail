@@ -2,7 +2,6 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #555555;
     color: #ffffff;
-
 }
 
 h1 {
@@ -54,4 +53,30 @@ p {
     display: inline-block;
     font-family: "Helvetica", Times, serif;
     font-size: 18px;
+}
+
+.createPartyButton {
+    background-color: #ffcc00;
+    border: none;
+    color: black;
+    padding: 15px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: "Helvetica", Times, serif;
+    font-size: 18px;
+    width: 15%;
+}
+
+ul {
+    list-style-position: outside;
+    list-style-type: none;
+}
+
+li {
+}
+
+.container {
+    justify-content: center;
+    margin-right: 3%;
 }

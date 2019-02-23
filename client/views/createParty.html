@@ -10,25 +10,26 @@
 
 <body ng-app="myApp" ng-controller="partyController">
 
-<div class="party">
-    <h1>
+<div class="party" align="center">
+    <h2>
         Create Party<br>
-    </h1>
+    </h2>
 
-    <button ng-click="addMember()">Add</button>
+    <button class="createPartyButton" ng-click="addMember()">Add</button>
     <br>
 
-    <div class="member" align="left">
+    <div class="container">
         <ul>
             <li ng-repeat="member in members">
-                <h2 for="member{{$index}}">Member {{$index+1}}</h2>
+                <h3 for="member{{$index}}">Member {{$index+1}}</h3>
                 <input type="text" id="member{{$index}}" size="15" >
                 <button ng-click="removeMember(member)">Remove</button>
             </li>
         </ul>
     </div>
 
-    <button ng-click="continue()">Continue</button>
+    <br>
+    <button class="createPartyButton" ng-click="continue()">Continue</button>
 
 </div>
 
