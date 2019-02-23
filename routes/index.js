@@ -23,7 +23,7 @@ router.use('/purchasing', function (req, res, next) {
     res.render('purchasing.html');
 });
 
-router.use('/party', function (req, res, next) {
+router.use('/createparty', function (req, res, next) {
     res.render('createParty.html');
 });
 
