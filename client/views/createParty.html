@@ -36,9 +36,15 @@
 <script>
     var app = angular.module('myApp', []);
     app.controller('partyController', function ($scope, $http, $document) {
-        $scope.members = [{
-            name: ""
-        }];
+
+        $http.get('/apis/gameState').success(function(data, status, headers, config) {
+            $scope.state = data;
+        }).error(function(data, status, headers, config) {
+            console.log("Error getting game state");
+        });
+
+        $scope.members = $scope.state.members;
+
         $scope.addMember = function () {
             if ($scope.members.length < 5) {
                 $scope.members.push({
