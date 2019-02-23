@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({extended: true})); // body parse the JSON
 
 
 app.use(session({
-    secret: "alphaomega",
+    secret: "keweenaw",
     resave: false,
     saveUninitialized: false,
     name: "id"
@@ -47,8 +47,6 @@ var server = app.listen(port, function () {
 });
 
 server.on('close', function () {
-    signup.closeConnections();
-    login.closeConnections();
     console.log("Server closing...\n");
 });
 
