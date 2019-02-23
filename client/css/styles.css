@@ -1,0 +1,156 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #555555;
+    color: #ffffff;
+
+}
+
+.error {
+    color: #ff0000;
+}
+
+.success {
+    color: #4CAF50;
+}
+
+form {
+    border: 3px solid #555555;
+}
+
+h3 {
+    padding-left: 24px;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+img.logo {
+    width: 20%;
+    border-radius: 0%;
+}
+
+.container {
+    padding: 16px;
+    background-color: #555555;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+#map {
+    height: 75%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+
+    .cancelbtn {
+        width: 100%;
+    }
+}
+
+controlUI{
+    border: '2px solid #fff';
+    cursor: 'pointer';
+}
+
+controlText {
+    color: 'rgb(25,25,25)';
+    font: 'Roboto';
+}
+
+
+/* nav bar stylings*/
+nav {
+    border-bottom: 1px solid whitesmoke;
+}
+
+ul {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+    border: 1px solid #555555;
+    list-style-type: none;
+    background-color: #555555;
+}
+
+
+li {
+    float: right;
+    margin: 0;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+}
+
+li a {
+    width: 100px;
+    display: block;
+    background-color: #555555;
+    color: white;
+    border: 1px solid #444444;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+}
+
+
+li strong {
+    width: 100px;
+    background-color: #555555;
+    color: white;
+    border: 1px solid #444444;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+}
+
+
+li a:hover {
+    background-color: #f1f1f1;
+    color: black;
+}

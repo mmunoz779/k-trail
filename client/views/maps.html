@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alpha Trails</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/mapStyles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script>
+        $(function () {
+            $("#logoutLink").on("click", function (e) {
+                $.post("/api/users/logout", function (data) {
+                });
+            });
+        });
+    </script>
+    <script src="../js/maps.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="submitRouteController">
+<nav>
+    <ul>
+        <li><a href="/" id="logoutLink">Logout</a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li>
+            <button onclick="alert('Plan your visit to the Tech Trails and save it for later! Begin by ' +
+         'clicking on a route segment to add it to your run, the total distance will be shown on ' +
+         'the bottom left. If you want to save your run, click the save selected route button at the top of the map and ' +
+          'enter a name in the dialog box that appears, hit submit to save the route to your profile.')">Help
+            </button>
+        </li>
+    </ul>
+</nav>
+
+<script>
+    (document.getElementById('legend'));
+    var app = angular.module(["myApp"], []);
+
+    app.controller('submitRouteController', function ($scope, $http, $location) {
+        $scope.loadExisting = function () {
+            var tempObj = $location.search();
+            var routeArray = tempObj.routeData.split(",");
+
+            if (tempObj.name) {
+                document.forms['myForm']['routeName'].value = tempObj.name;
+                document.forms['myForm']['submitRouteButton'].innerHTML = 'Update Route';
+            }
+
+            setTimeout(function () {
+                loadSavedRoute(routeArray);
+            }, 500);
+        };
+
+        $scope.submitRoute = function () {
+            var routeName = document.forms["myForm"]["routeName"].value;
+            var routeData = document.forms["myForm"]["routeSegments"].value;
+            var distance = document.forms["myForm"]["distance"].value;
+
+            if (routeName.length > 30) {
+                $scope.error = "Please enter a name less than 30 characters";
+                return;
+            }
+
+            var request = $http({
+                method: 'post',
+                url: '/api/users/routes',
+                data: {
+                    name: routeName,
+                    route: routeData,
+                    distance: distance
+                }
+            });
+            request.success((response) => {
+                console.log(response.data);
+                if (response.error) {
+                    console.log('Internal server error');
+                    $scope.error = 'Internal server error, please try again later'
+                } else {
+                    window.location.href = "/profile#?success=true";
+                }
+            });
+            request.error((response) => {
+                $scope.error = "Internal server error";
+                console.log("Internal server error");
+            })
+        }
+    });
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIEstDusQSA9UcvFkFoMmBJVPX02ifQVs&callback=initMap"
+        async defer></script>
+<form name="myForm" ng-app="myApp" ng-controller="submitRouteController" ng-submit="submitRoute()" hidden id="myForm">
+
+    <div align="center" class="container">
+        <div class='error'>
+            <p>{{error}}</p>
+        </div>
+        <label for="name" style="color: #ffffff"><b>Route Name</b></label>
+        <input type="text" placeholder="Enter Route Name" name="routeName" required>
+        <input type="text" hidden name="routeSegments">
+        <input type="text" hidden name="distance">
+        <!-- Add information validation script to check valid login info and email-->
+        <button type="submit" name="submitRouteButton">Submit Route</button>
+
+
+        <button type="button" class="cancelbtn"
+                onclick="hideForm()">Cancel
+        </button>
+    </div>
+</form>
+
+<div id="map"></div>
+<div class="infoBox" id="info-box"></div>
+
+<div class="legend">
+    <img id="legend" src="../assets/legend.png" alt="Unable to load map legend" hidden/>
+</div>
+</body>
+</html>

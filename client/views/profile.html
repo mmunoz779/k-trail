@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="../css/styles.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script>
+        $(function () {
+            $("#logoutLink").on("click", function (e) {
+                $.post("/api/users/logout", function (data) {
+                });
+            });
+        });
+    </script>
+    <script src="../js/maps.js"></script>
+    <style>
+        h2, h3 {
+            align-content: center;
+        }
+    </style>
+</head>
+<body ng-app="myApp">
+<nav>
+    <ul>
+        <li><a href="/" id="logoutLink">Logout</a></li>
+        <li><a href="/maps">Maps</a></li>
+    </ul>
+</nav>
+
+<div align="center" class="userInfo" ng-app="myApp" ng-controller="userInfoController ">
+    <h2><b>User Info</b></h2>
+    <h3>Email: {{users[0].email}}</h3>
+    <h3>Full Name: {{users[0].name}}</h3>
+    <h3>Last Login: {{users[0].lastLogin | date: "MM/dd/yyyy hh:mm:ss" : "+0110"}}</h3>
+    <h3>User Role: {{users[0].role}}</h3>
+</div>
+
+<div align="center" class="favoriteRoutes" ng-app="myApp" ng-controller="savedRouteController">
+    <h2><b>Saved Routes</b></h2>
+    <div class="success">
+        <p name="success">{{success}}</p>
+    </div>
+    <div class="error">
+        <p name="noSavedRoutes">{{noSavedRoutes}}</p>
+    </div>
+    <div id="savedRoutesTableContainer">
+        <table border=1px>
+            <tr>
+                <th align="center" style="width: 250px;">Name</th>
+                <th align="center" hidden>Route</th>
+                <th align="center">Distance</th>
+                <th align="center"></th>
+                <th align="center"></th>
+            </tr>
+            <tr ng-repeat="x in routes">
+                <td align="center">{{x.name}}</td>
+                <td align="center">{{x.distance}} km</td>
+                <td hidden>{{x.route}}</td>
+                <td align="center">
+                    <button ng-click="edit(x)">View/Edit</button>
+                </td>
+                <td align="center">
+                    <button ng-click="delete(x)" style="background-color:red">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('userInfoController', function ($scope, $http) {
+        $http.get("/api/users/info")
+            .then(function (response) {
+                $scope.users = response.data;
+            });
+    });
+    app.controller('savedRouteController', function ($scope, $http, $location) {
+        var tempObj = $location.search();
+        if (tempObj.success == 'true') {
+            $scope.success = "Successfully added or updated route";
+            $location.search('success', false);
+        }
+        $scope.edit = function (row) {
+            window.location.href = "/maps#?routeData=" + row.route + '&name=' + row.name;
+        };
+        $scope.delete = function (row) {
+            var request = $http({
+                method: 'post',
+                url: '/api/users/routes/delete',
+                data: {
+                    name: row.name
+                }
+            });
+            request.success((response) => {
+                if (response.error) {
+                    $scope.error = "Delete unsuccessful";
+                } else {
+                    document.location = '/profile';
+                }
+            });
+            request.error((response) => {
+                $scope.error = "Internal server error";
+                console.log("Internal server error");
+            })
+        };
+        $http.get("/api/users/routes")
+            .then(function (response) {
+                if (response.data[0] == undefined) {
+                    document.getElementById("savedRoutesTableContainer").hidden = true;
+                    $scope.noSavedRoutes = "No saved routes";
+                } else {
+                    $scope.routes = response.data;
+                }
+            });
+    });
+</script>
+
+</body>
+</html>
