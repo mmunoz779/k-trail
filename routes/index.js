@@ -3,12 +3,7 @@ var router = express.Router();
 var fs = require('fs');
 
 router.get('/', function (req, res, next) {
-    req.session.state = JSON.parse(fs.readFileSync('./client/JSON/state.json'));
     res.render('home.html');
-});
-
-router.use('/apis/gameState', function (req, res, next) {
-    res.json(req.session.state);
 });
 
 router.use('/difficulty', function (req, res, next) {

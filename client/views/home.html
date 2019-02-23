@@ -24,7 +24,7 @@
 </div>
 <script>
     var app = angular.module('myApp', []);
-    app.controller('homeController', function ($scope, $http) {
+    app.controller('homeController', function ($scope, $http, $window) {
         $http.get('../JSON/state.json').success(function(data) {
             if(!window.sessionStorage) {
                 console.log("Bummer");
