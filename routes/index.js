@@ -33,13 +33,10 @@ router.use('/introduction', function (req, res, next) {
 
 router.use('/viewparty', function (req, res, next) {
     res.render('viewParty.html');
-})
+});
 
 router.use('/shop', function (req, res, next) {
     res.render('shop.html');
-});
-router.get('/DayAnimation', function (req, res, next) {
-    res.render('DayAnimation.html');
 });
 router.get('/Inventory', function (req, res, next) {
     res.render('Inventory.html');
@@ -49,6 +46,9 @@ router.get('/DayPrompt', function (req, res, next) {
 });
 router.get('/DayPromptTown', function (req, res, next) {
     res.render('DayPromptTown.html');
+});
+router.get('/prospecting', function (req, res, next) {
+    res.render('prospecting.html');
 });
 router.use('/*', function (req, res) {
     res.status(404);
