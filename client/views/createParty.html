@@ -22,20 +22,20 @@
         <ul>
             <li ng-repeat="member in members">
                 <h3 for="member{{$index}}">Member {{$index+1}}</h3>
-                <input type="text" id="member{{$index}}" size="15" >
+                <input type="text" id="member{{$index}}" size="15" ng-model="member.name" >
                 <button ng-click="removeMember(member)">Remove</button>
             </li>
         </ul>
     </div>
 
     <br>
-    <button class="createPartyButton" onclick="window.location.href='/purchasing';">Continue</button>
+    <button class="createPartyButton" ng-click="continue()">Continue</button>
 
 </div>
 
 <script>
     var app = angular.module('myApp', []);
-    app.controller('partyController', function ($scope, $http, $document) {
+    app.controller('partyController', function ($scope, $http, $document, $window) {
 
         $scope.state = JSON.parse(sessionStorage.getItem('state'));
 
@@ -50,12 +50,17 @@
         $scope.addMember = function () {
             if ($scope.members.length < 5) {
                 $scope.members.push({
-                    name: ""
+                    name: "",
+                    health: 100,
+                    food: 100,
+                    ailments: [],
+                    rations: 1
                 })
             } else {
                 alert('You can not have more than 5 party members.')
             }
         };
+
         $scope.removeMember = function (m) {
             if ($scope.members.length <= 1) {
                 alert('You must have at least one party member.');
@@ -64,7 +69,16 @@
                     return currMember !== m;
                 });
             }
+        };
+
+        $scope.continue = function () {
+
+
+
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href='/purchasing';
         }
+
     });
 
 </script>
