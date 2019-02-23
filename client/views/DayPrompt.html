@@ -18,14 +18,12 @@
 </div>
 
 
-
-
 <div class="dayText">
-<p>Weather: {{state.weather}}</p>
-<p>Pace: {{state.currentPace * state.paceScalar}}</p>
-<p>Distance Traveled: {{state.distance}} miles</p>
+    <p>Weather: {{state.weather}}</p>
+    <p>Pace: {{state.currentPace * state.paceScalar}}</p>
+    <p>Distance Traveled: {{state.distance}} miles</p>
 
-<p>You May:</p>
+    <p>You May:</p>
     <button ng-click='returntoday()'>Start to Traveling</button>
     <button ng-click='prospect()'>Mine for Copper</button>
     <button ng-click='inventory()'>Check Inventory</button>
@@ -35,23 +33,23 @@
 <script>
     var app = angular.module('myApp', []);
     app.controller('WorldData', function ($scope, $http, $window) {
-    $scope.state=JSON.parse(sessionStorage.getItem('state'));
-    $scope.returntoday=function() {
-        sessionStorage.setItem('state', JSON.stringify($scope.state));
-        $window.location.href = '/DayPrompt';
-    };
-    $scope.prospect=function() {
-        sessionStorage.setItem('state', JSON.stringify($scope.state));
-        $window.location.href = '/prospecting';
-    };
-    $scope.viewparty=function() {
-        sessionStorage.setItem('state', JSON.stringify($scope.state));
-        $window.location.href = '/viewparty';
-    };
-    $scope.Rest=function() {
-        sessionStorage.setItem('state', JSON.stringify($scope.state));
-        $window.location.href = '/Rest';
-    };
+        $scope.state = JSON.parse(sessionStorage.getItem('state'));
+        $scope.returntoday = function () {
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href = '/DayPrompt';
+        };
+        $scope.prospect = function () {
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href = '/prospecting';
+        };
+        $scope.viewparty = function () {
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href = '/viewparty';
+        };
+        $scope.inventory = function () {
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href = '/inventory';
+        };
     });
 </script>
 </body>
