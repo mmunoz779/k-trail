@@ -1,6 +1,5 @@
 # Default ignored files
 .idea/shelf/*
-.idea/workspace.xml
 .idea/*
 coverage/*
 .nyc_output/*
