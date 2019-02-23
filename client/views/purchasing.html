@@ -21,12 +21,11 @@
 <script>
     var app = angular.module('myApp', []);
     app.controller('shopController', function ($scope, $http) {
-        $scope.prices = {
-            food: 2,
-            clothes: 10,
-            dogs: 20,
-            sled: 15
-        };
+        $http.get('../JSON/shop.json').success(function(data, status, headers, config) {
+            $scope.prices = data;
+        }).error(function(data, status, headers, config) {
+            console.log("Error reading shop.json");
+        });
     });
 </script>
 
