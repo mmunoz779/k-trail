@@ -31,6 +31,10 @@ router.use('/introduction', function (req, res, next) {
    res.render('storyIntroduction.html');
 });
 
+router.use('/viewparty', function (req, res, next) {
+    res.render('viewParty.html');
+})
+
 router.use('/shop', function (req, res, next) {
     res.render('shop.html');
 });
