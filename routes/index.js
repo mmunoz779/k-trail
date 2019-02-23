@@ -39,6 +39,9 @@ router.get('/Inventory', function (req, res, next) {
 router.get('/DayPrompt', function (req, res, next) {
     res.render('DayPrompt.html');
 });
+router.get('/DayPromptTown', function (req, res, next) {
+    res.render('DayPromptTown.html');
+});
 router.use('/*', function (req, res) {
     res.status(404);
     res.send();

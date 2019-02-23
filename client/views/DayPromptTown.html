@@ -14,15 +14,6 @@
 <p>Pace:{{state.pace}}</p>
 <p>Distance Traveled: {{state.distance}} </p>
 
-<p>Health:</p>
-<div class="member">
-    <ul>
-        <li ng-repeat= "member in state.members">
-            <h2> {{member.name}}:{{member.health}}</h2>
-
-        </li>
-    </ul>
-</div>
 
 <br>
 
@@ -41,7 +32,6 @@
             weather:'clear',
             pace:'brisk',
             distance:'0',
-            members: [{name:'driver',health:'10'},{name:'Mikey',health:'10'}]
 
         }
     });
