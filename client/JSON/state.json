@@ -1,0 +1,18 @@
+{
+  "turn": 0,
+  "weather": "cold",
+  "location": "Mackinac",
+  "locationType": "Town",
+  "money": 2000,
+  "members": [{
+    "name": "Driver",
+    "health": 10,
+    "ailments": [],
+    "rations": 1
+  }],
+  "distance": 0,
+  "items": [],
+  "currentPace": 20,
+  "sled": true,
+  "dogs": 0
+}

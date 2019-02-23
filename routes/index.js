@@ -3,8 +3,14 @@ var router = express.Router();
 var fs = require('fs');
 
 router.get('/', function (req, res, next) {
-    if (!req.session) {
-        fs
+    if (!req.session.state) {
+        fs.readFile('../client/JSON/state.json', (err, data) => {
+            if (err) {
+                console.log(err);
+            } else {
+                req.session.state = data;
+            }
+        });
     }
     res.render('home.html');
 });
@@ -31,5 +37,8 @@ router.use('/*', function (req, res) {
 });
 router.get('/DayAnimation', function (req, res, next) {
     res.render('DayAnimation.html');
+});
+router.get('/inventory', function (req, res, next) {
+    res.render('Inventory.html');
 });
 module.exports = router;
