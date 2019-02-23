@@ -7,24 +7,18 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var favicon = require('serve-favicon');
 var session = require('express-session');
-login = require('../models/users/login');
-logout = require('../models/users/logout');
-signup = require('../models/users/signup');
 
 var app = express();
 
-// Configure project directory pathway
-var OSName = "unknown os";
-if (process.platform == "win32") OSName = "Windows"; //to build a path to the directory on Windows or Mac/Linux
-var directoryArray = __dirname.split(OSName == "Windows" ? '\\' : '/');
+var directoryArray = __dirname.split('\\');
 var projectDirectory = "";
 
 for (var i = 0; i < directoryArray.length - 1; i++) {
-    projectDirectory += directoryArray[i] + (OSName == "Windows" ? '\\' : '/');
+    projectDirectory += directoryArray[i] + '\\';
 }
 
 //View engine
-app.set('views', path.join(projectDirectory, OSName != "Windows" ? 'client/views' : 'client\\views')); //sets directory for either windows or mac
+app.set('views', path.join(projectDirectory, 'client\\views')); //sets directory for either windows or mac
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
