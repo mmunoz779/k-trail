@@ -4,14 +4,26 @@
   "location": "Mackinac",
   "locationType": "Town",
   "money": 2000,
-  "members": [{
-    "name": "Driver",
-    "health": 10,
-    "ailments": [],
-    "rations": 1
-  }],
+  "members": [
+    {
+      "name": "Driver",
+      "health": 10,
+      "ailments": [],
+      "rations": 1
+    }
+  ],
   "distance": 0,
-  "items": [{"food":0},{"clothes": 0}],
+  "items": [
+    {
+      "food": 0
+    },
+    {
+      "clothes": 0
+    },
+    {
+      "sledParts": 0
+    }
+  ],
   "currentPace": 20,
   "sled": true,
   "dogs": 0,

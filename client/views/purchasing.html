@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../css/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-
+    <script src="../js/constants.js"></script>
 </head>
 <body ng-app="myApp" ng-controller="shopController">
 <div class="imgcontainer" align="center">
@@ -14,26 +14,32 @@
 </div>
 
 <label for="foodTxtBx">Food: ${{prices.food}} per pound</label>
-<input type="text" id="foodTxtBx"><br>
+<input type="text" id="foodTxtBx" ng-model="state.items[0].food"><br>
 <label for="dogTxtBx">Huskies: ${{prices.dogs}} per husky</label>
-<input type="text" id="dogTxtBx"><br>
+<input type="text" id="dogTxtBx" ng-model="state.dogs"><br>
 <label for="sledTxtBx">Spare Sled Parts: ${{prices.sled}} per part</label>
-<input type="text" id="sledTxtBx"><br>
+<input type="text" id="sledTxtBx" ng-model="state.items[2].sledParts"><br>
 <label for="clothesTxtBx">Clothes: ${{prices.clothes}} per hat that covers your ears</label>
-<input type="text" id="clothesTxtBx"><br>
+<input type="text" id="clothesTxtBx" ng-model="state.items[1].clothes"><br>
 
 <script>
     var app = angular.module('myApp', []);
-    app.controller('shopController', function ($scope, $http) {
+    app.controller('shopController', function ($scope, $http, $window) {
+        $scope.state = JSON.parse(sessionStorage.getItem('state'));
         $http.get('../JSON/shop.json').success(function(data, status, headers, config) {
             $scope.prices = data;
         }).error(function(data, status, headers, config) {
             console.log("Error reading shop.json");
         });
+
+        $scope.navigateParty = function () {
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href = '/introduction'
+        }
     });
 </script>
 
-<button onclick="window.location.href='/introduction'">Finish</button>
+<button ng-click="navigateParty()">Finish</button>
 
 </body>
 </html>
