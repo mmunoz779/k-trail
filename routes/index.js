@@ -41,4 +41,8 @@ router.get('/DayAnimation', function (req, res, next) {
 router.get('/inventory', function (req, res, next) {
     res.render('Inventory.html');
 });
+router.get('/DayPrompt', function (req, res, next) {
+    res.render('DayPrompt.html');
+});
+
 module.exports = router;
