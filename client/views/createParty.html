@@ -18,11 +18,11 @@
     <button ng-click="addMember()">Add</button>
     <br>
 
-    <div class="member">
+    <div class="member" align="left">
         <ul>
             <li ng-repeat="member in members">
                 <h2 for="member{{$index}}">Member {{$index+1}}</h2>
-                <input type="text" id="member{{$index}}">
+                <input type="text" id="member{{$index}}" size="15" >
                 <button ng-click="removeMember(member)">Remove</button>
             </li>
         </ul>
