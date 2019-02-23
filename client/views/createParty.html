@@ -37,11 +37,13 @@
     var app = angular.module('myApp', []);
     app.controller('partyController', function ($scope, $http, $document) {
 
-        $http.get('/apis/gameState').success(function(data, status, headers, config) {
-            $scope.state = data;
-        }).error(function(data, status, headers, config) {
-            console.log("Error getting game state");
-        });
+        $scope.state = JSON.parse(sessionStorage.getItem('state'));
+
+        // $http.get('/apis/gameState').success(function(response) {
+        //     $scope.state = response;
+        // }).error(function(response) {
+        //     console.log("Error getting game state");
+        // });
 
         $scope.members = $scope.state.members;
 
