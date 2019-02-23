@@ -15,10 +15,10 @@
 
 
 <div class="invText">
-    <p>Food: {{state.food}} pounds</p>
+    <p>Food: {{state.items[0].food}} pounds</p>
     <p>Dogs: {{state.dogs}}</p>
-    <p>Sled Parts: {{state.sled}}</p>
-    <p>Clothes: {{state.clothes}}</p>
+    <p>Sled Parts: {{state.items[2].sledParts}}</p>
+    <p>Clothes: {{state.items[1].clothes}}</p>
     <p>Copper: {{state.money}}</p>
     <button ng-click='DayPrompt()'>Get back on the road</button>
 </div>
@@ -26,6 +26,8 @@
 <script>
     var app = angular.module('myApp', []);
     app.controller('inventory', function ($scope, $http,$window) {
+        $scope.state = JSON.parse(sessionStorage.getItem('state'));
+
         $scope.returntoday=function() {
             sessionStorage.setItem('state', JSON.stringify($scope.state));
             $window.location.href = '/DayPrompt';
