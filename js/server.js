@@ -35,7 +35,8 @@ app.use(session({
     secret: "keweenaw",
     saveUninitialized: true,
     resave: false,
-    name: "gameState"
+    name: "gameState",
+    cookie: {expires: new Date(Date.now() + 3600000), maxAge: 3600000}
 }));
 
 // Handle routing

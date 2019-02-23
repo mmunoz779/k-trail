@@ -10,17 +10,16 @@
 </head>
 <body ng-app="myApp" ng-controller="inventory">
 
+<div class="imgcontainer">
+    <img src="../assets/inventory.png" alt="inventory" class="inventory">
+</div> <!-- Adding picture of dogs for day animation -->
 
-<img src="../assets/inventory.png" alt="inventory" class="inventory" style="width: 100%;">
-
-<div class="invText">
-    <p>Food: {{state.food}} pounds</p>
-    <p>Dogs: {{state.dogs}}</p>
-    <p>Sled Parts: {{state.sled}}</p>
-    <p>Clothes: {{state.clothes}}</p>
-    <p>Copper: {{state.copper}}</p>
-    <button onclick="window.location.href='/DayPrompt'">Return to Traveling</button>
-</div>
+<p>Food: {{state.food}} pounds</p>
+<p>Dogs: {{state.dogs}}</p>
+<p>Sled Parts: {{state.sled}}</p>
+<p>Clothes: {{state.clothes}}</p>
+<p>Copper: {{state.copper}}</p>
+<button onclick="window.location.href='/DayPrompt'">Return to Traveling</button>
 <script>
     var app = angular.module('myApp', []);
     app.controller('inventory', function ($scope, $http) {

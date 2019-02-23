@@ -3,21 +3,7 @@ var router = express.Router();
 var fs = require('fs');
 
 router.get('/', function (req, res, next) {
-    if (!req.session.state) {
-        fs.readFile('./client/JSON/state.json', (err, data) => {
-            if (!err) {
-                req.session.state = JSON.parse(data);
-                console.log(req.session.state);
-            } else {
-                console.log(err);
-            }
-        });
-    }
     res.render('home.html');
-});
-
-router.use('/apis/gameState', function (req, res, next) {
-    res.send(req.session.state);
 });
 
 router.use('/difficulty', function (req, res, next) {
