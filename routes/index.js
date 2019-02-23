@@ -19,12 +19,16 @@ router.use('/difficulty', function (req, res, next) {
     res.render('difficultySelect.html');
 });
 
+router.use('/createparty', function (req, res, next) {
+    res.render('createParty.html');
+});
+
 router.use('/purchasing', function (req, res, next) {
     res.render('purchasing.html');
 });
 
-router.use('/createparty', function (req, res, next) {
-    res.render('createParty.html');
+router.use('/introduction', function (req, res, next) {
+   res.render('storyIntroduction.html');
 });
 
 router.use('/shop', function (req, res, next) {
