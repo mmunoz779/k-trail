@@ -40,8 +40,7 @@
       "enabled": true,
       "pre-push": [
         "git pull",
-        "npm install",
-        "npm test"
+        "npm install"
       ],
       "post-commit": [],
       "post-checkout": [],
