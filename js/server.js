@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({extended: true})); // body parse the JSON
 app.use(session({
     secret: "keweenaw",
     saveUninitialized: true,
-    resave: true,
+    resave: false,
     name: "gameState"
 }));
 

@@ -3,19 +3,20 @@ var router = express.Router();
 var fs = require('fs');
 
 router.get('/', function (req, res, next) {
-    fs.readFile('./client/JSON/state.json', (err, data) => {
-        if (!err) {
-            req.session.state = JSON.parse(data);
-            console.log(req.session.state);
-        } else {
-            console.log(err);
-        }
-    });
+    if (!req.session.state) {
+        fs.readFile('./client/JSON/state.json', (err, data) => {
+            if (!err) {
+                req.session.state = JSON.parse(data);
+                console.log(req.session.state);
+            } else {
+                console.log(err);
+            }
+        });
+    }
     res.render('home.html');
 });
 
 router.use('/apis/gameState', function (req, res, next) {
-    console.log(req.session.state);
     res.send(req.session.state);
 });
 
