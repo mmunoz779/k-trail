@@ -3,8 +3,14 @@ var router = express.Router();
 var fs = require('fs');
 
 router.get('/', function (req, res, next) {
-    if (!req.session) {
-        fs
+    if (!req.session.state) {
+        fs.readFile('../client/JSON/state.json', (err, data) => {
+            if (err) {
+                console.log(err);
+            } else {
+                req.session.state = data;
+            }
+        });
     }
     res.render('home.html');
 });
