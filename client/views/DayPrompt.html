@@ -9,6 +9,10 @@
 
 </head>
 <body ng-app="myApp" ng-controller="WorldData">
+<div class="imgcontainer">
+    <img src="../assets/dogs.png" alt="dogs" class="dogs">
+</div> <!-- Adding picture of dogs for day animation -->
+
 <p>Weather: {{state.weather}}</p>
 <p>Pace: {{state.pace}}</p>
 <p>Distance Traveled: {{state.distance}}</p>
@@ -23,12 +27,12 @@
 </div>
 
 <p>You may:</p>
-    <button>Continue Traveling</button>
+    <button onclick="window.location.href='/DayAnimation'">Start Traveling</button>
     <button>Go Prospecting</button>
-    <button>Check Supplies</button>
-    <button>Change Pace</button>
-    <button>Change Food Rations</button>
-    <button>Stop to Rest</button>
+    <button onclick="window.location.href='/Inventory'">Check Inventory</button>
+    <button>Change Pace</button><!-- make popup window-->
+    <button>View Party</button>
+    <button>Stop to Rest</button><!-- make popup window-->
 
 <script>
     var app = angular.module('myApp', []);

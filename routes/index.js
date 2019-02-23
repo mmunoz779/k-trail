@@ -30,19 +30,18 @@ router.use('/party', function (req, res, next) {
 router.use('/shop', function (req, res, next) {
     res.render('shop.html');
 });
-
-router.use('/*', function (req, res) {
-    res.status(404);
-    res.send();
-});
 router.get('/DayAnimation', function (req, res, next) {
     res.render('DayAnimation.html');
 });
-router.get('/inventory', function (req, res, next) {
+router.get('/Inventory', function (req, res, next) {
     res.render('Inventory.html');
 });
 router.get('/DayPrompt', function (req, res, next) {
     res.render('DayPrompt.html');
+});
+router.use('/*', function (req, res) {
+    res.status(404);
+    res.send();
 });
 
 module.exports = router;
