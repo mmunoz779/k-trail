@@ -22,7 +22,7 @@
             <h3>{{member.name}}:</h3>
             <h4 class="viewPartyTab1">Health <progress class="viewPartyTab1" id="health" value={{member.health}} max="100"></progress> </h4>
             <h4 class="viewPartyTab1">Food <progress class="viewPartyTab2" id="food" value={{member.food}} max="100"></progress> </h4>
-            <select class="viewPartyTab1">
+            <select class="viewPartyTab1" ng-model="member.rations">
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -41,17 +41,25 @@
 
 <script>
     var app = angular.module('myApp', []);
-    app.controller('partyStatusController', function ($scope, $http) {
-        $scope.state={
-            weather:'clear',
-            pace:'brisk',
-            distance:'0',
-            members: [{name:'driver',health:'50',food:'100',ailments:["test", "test2"]},{name:'Mikey',health:'100',food:"75", ailments:["hello", "aids"]}]
+    app.controller('partyStatusController', function ($scope, $http, $window) {
+        $scope.state=JSON.parse(sessionStorage.getItem('state'));
+
+        $scope.back = function() {
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href='/dayPrompt';
         }
+
+        // $scope.state={
+        //     weather:'clear',
+        //     pace:'brisk',
+        //     distance:'0',
+        //     members: [{name:'driver',health:'50',food:'100',ailments:["test", "test2"]},{name:'Mikey',health:'100',food:"75", ailments:["hello", "aids"]}]
+        // }
     });
 </script>
 
-<button onclick="window.location.href='/dayPrompt'" class="createPartyButton">Back</button>
+<button class="createPartyButton" ng-click="back()"></button>
+
 
 </body>
 </html>
