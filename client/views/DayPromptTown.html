@@ -23,7 +23,7 @@
     <p>Distance Traveled: {{state.distance}} miles </p>
 
 <p>You May:</p>
-<button ng-click='returntoday()'>Return to Traveling</button>
+<button ng-click='returntown()'>Get on the Road</button>
 <button ng-click='inventory()'>Check Inventory</button>
 <button ng-click='Pace()'>Change Pace</button>
 <button ng-click='viewparty()'>Party Status</button>
@@ -34,9 +34,9 @@
     var app = angular.module('myApp', []);
     app.controller('WorldData', function ($scope, $http,$window) {
         $scope.state=JSON.parse(sessionStorage.getItem('state'));
-        $scope.returntoday=function() {
+        $scope.returntown=function() {
             sessionStorage.setItem('state', JSON.stringify($scope.state));
-            $window.location.href = '/DayPrompt';
+            $window.location.href = '/DayPromptTown';
         };
         $scope.inventory=function() {
             sessionStorage.setItem('state', JSON.stringify($scope.state));
