@@ -9,14 +9,18 @@
 
 </head>
 <body ng-app="myApp" ng-controller="shopController">
-<label for="foodTxtBx">food {{prices.food}}</label>
-<input type="text" id="foodTxtBx">
-<label for="dogTxtBx">Spare dogs {{prices.dogs}}</label>
-<input type="text" id="dogTxtBx">
-<label for="sledTxtBx">Spare sled parts {{prices.sled}}</label>
-<input type="text" id="sledTxtBx">
-<label for="clothesTxtBx">Clothes {{prices.clothes}}</label>
-<input type="text" id="clothesTxtBx">
+<div class="imgcontainer" align="center">
+    <img src="../assets/vendor.png" alt="vendor" class="vendor">
+</div>
+
+<label for="foodTxtBx">Food: ${{prices.food}} per pound</label>
+<input type="text" id="foodTxtBx"><br>
+<label for="dogTxtBx">Huskies: ${{prices.dogs}} per husky</label>
+<input type="text" id="dogTxtBx"><br>
+<label for="sledTxtBx">Spare Sled Parts: ${{prices.sled}} per part</label>
+<input type="text" id="sledTxtBx"><br>
+<label for="clothesTxtBx">Clothes: ${{prices.clothes}} per hat that covers your ears</label>
+<input type="text" id="clothesTxtBx"><br>
 
 <script>
     var app = angular.module('myApp', []);
