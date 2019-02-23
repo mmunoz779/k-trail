@@ -11,6 +11,24 @@ h1 {
     color: white;
 }
 
+h2 {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 48px;
+    color: white;
+}
+
+h3 {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 32px;
+    color: white;
+}
+
+p {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+    color: white;
+}
+
 .homeButton {
     background-color: #ffcc00;
     border: none;
@@ -21,6 +39,19 @@ h1 {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-family: "Times New Roman", Times, serif;
+    font-family: "Helvetica", Times, serif;
     font-size: 24px;
+}
+
+.difficultyButton {
+    background-color: #ffcc00;
+    border: none;
+    color: black;
+    padding: 15px 22px;
+    margin-top: 1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: "Helvetica", Times, serif;
+    font-size: 18px;
 }
