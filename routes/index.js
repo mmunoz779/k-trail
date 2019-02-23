@@ -28,4 +28,7 @@ router.use('/*', function (req, res) {
 router.get('/DayAnimation', function (req, res, next) {
     res.render('DayAnimation.html');
 });
+router.get('/inventory', function (req, res, next) {
+    res.render('Inventory.html');
+});
 module.exports = router;
