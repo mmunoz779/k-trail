@@ -22,14 +22,13 @@
 
 <div class="dayText">
 <p>Weather: {{state.weather}}</p>
-<p>Pace: {{state.pace}}</p>
+<p>Pace: {{state.currentPace * state.paceScalar}}</p>
 <p>Distance Traveled: {{state.distance}} miles</p>
 
 <p>You May:</p>
     <button ng-click='returntoday()'>Start to Traveling</button>
     <button ng-click='prospect()'>Mine for Copper</button>
     <button ng-click='inventory()'>Check Inventory</button>
-    <button ng-click='Pace()'>Change Pace</button>
     <button ng-click='viewparty()'>Party Status</button>
     <button ng-click='Rest()'>Stop to Rest</button>
 </div>
@@ -44,10 +43,6 @@
     $scope.prospect=function() {
         sessionStorage.setItem('state', JSON.stringify($scope.state));
         $window.location.href = '/prospecting';
-    };
-    $scope.Pace=function() {
-        sessionStorage.setItem('state', JSON.stringify($scope.state));
-        $window.location.href = '/Pace';
     };
     $scope.viewparty=function() {
         sessionStorage.setItem('state', JSON.stringify($scope.state));

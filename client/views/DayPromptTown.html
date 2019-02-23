@@ -19,13 +19,12 @@
 <div class="townText">
     <p>You Are In Town</p>
     <p>Weather: {{state.weather}}</p>
-    <p>Pace: {{state.pace}}</p>
+    <p>Pace: {{state.currentPace * state.paceScalar}}</p>
     <p>Distance Traveled: {{state.distance}} miles </p>
 
 <p>You May:</p>
 <button ng-click='returntoday()'>Get on the Road</button>
 <button ng-click='inventory()'>Check Inventory</button>
-<button ng-click='Pace()'>Change Pace</button>
 <button ng-click='viewparty()'>Party Status</button>
 <button ng-click='Rest()'>Stop to Rest</button>
 <button ng-click='shop()'>Go Shopping</button>
@@ -49,10 +48,6 @@
         $scope.shop=function() {
             sessionStorage.setItem('state', JSON.stringify($scope.state));
             $window.location.href = '/shop';
-        };
-        $scope.Pace=function() {
-            sessionStorage.setItem('state', JSON.stringify($scope.state));
-            $window.location.href = '/Pace';
         };
         $scope.Rest=function() {
             sessionStorage.setItem('state', JSON.stringify($scope.state));
