@@ -18,6 +18,7 @@
 <p>Distance Traveled: {{state.distance}} miles</p>
 
 <p>You may:</p>
+<input type="text" digits-only ng-model="question.point"/>
     <button onclick="window.location.href='/DayPrompt'">Continue Traveling</button>
     <button onclick="window.location.href='/prospecting'">Go Prospecting</button>
     <button onclick="window.location.href='/inventory'">Check Inventory</button>
@@ -34,7 +35,19 @@
             distance:'0',
 
         }
+    }).directive('digitsOnly', function () {
+        return {
+            require: 'ngModel',
+            link: function link(scope, element, attrs, ngModel) {
+                ngModel.$parsers.push(function (value) {
+                    var numbers = value.replace(/\D/g, '');
+                    element.val(numbers);
+                    return numbers;
+                });
+            }
+        };
     });
+
 </script>
 </body>
 </html>
