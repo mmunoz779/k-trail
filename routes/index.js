@@ -5,8 +5,8 @@ router.get('/', function (req, res, next) {
     res.render('home.html');
 });
 
-router.use('/character', function (req, res, next) {
-    res.render('characterSelect.html');
+router.use('/difficulty', function (req, res, next) {
+    res.render('difficultySelect.html');
 });
 
 router.use('/*', function (req, res) {
