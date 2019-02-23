@@ -4,14 +4,24 @@
     <title>DayPrompt</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 
 </head>
-<body>
-<p>Weather:</p>
+<body ng-app="myApp" ng-controller="WorldData">
+<p>Weather: {{state.weather}}</p>
+<p>Pace: {{state.pace}}</p>
+<p>Distance Traveled: {{state.distance}}</p>
 <p>Health:</p>
-<p>Pace:</p>
-<p>Rations:</p>
-<br>
+<div class="member">
+    <ul>
+        <li ng-repeat= "member in state.members">
+            <h2> {{member.name}}:{{member.health}}</h2>
+
+        </li>
+    </ul>
+</div>
+
 <p>You may:</p>
     <button>Continue Traveling</button>
     <button>Go Prospecting</button>
@@ -19,5 +29,18 @@
     <button>Change Pace</button>
     <button>Change Food Rations</button>
     <button>Stop to Rest</button>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('WorldData', function ($scope, $http) {
+        $scope.state={
+            weather:'clear',
+            pace:'brisk',
+            distance:'0',
+            members: [{name:'driver',health:'10'},{name:'Mikey',health:'10'}]
+
+        }
+    });
+</script>
 </body>
 </html>
