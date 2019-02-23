@@ -9,23 +9,30 @@
 
 </head>
 
-<div class="imgcontainer" align="center">
+
+<body ng-app="myApp" ng-controller="WorldData">
+
+<div class="bkgrnd">
+    <img src="../assets/snow.gif" alt="snow" class="bksnow" style="width: 100%;" align="center">
     <img src="../assets/dogs.png" alt="dogs" class="dogs">
 </div>
-<body ng-app="myApp" ng-controller="WorldData">
+
+
+
+
+<div class="dayText">
 <p>Weather: {{state.weather}}</p>
 <p>Pace: {{state.pace}}</p>
 <p>Distance Traveled: {{state.distance}} miles</p>
 
 <p>You May:</p>
-<input type="text" digits-only ng-model="state."/>
     <button onclick="window.location.href='/DayPrompt'">Continue Traveling</button>
     <button onclick="window.location.href='/prospecting'">Go Prospecting</button>
     <button onclick="window.location.href='/inventory'">Check Inventory</button>
     <button>Change Pace</button>
     <button onclick="window.location.href='/viewparty'">Party Status</button>
     <button>Stop to Rest</button>
-
+</div>
 <script>
     var app = angular.module('myApp', []);
     app.controller('WorldData', function ($scope, $http) {
