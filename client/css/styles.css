@@ -69,6 +69,11 @@ img.logo {
     background-color: #555555;
 }
 
+.difficulty {
+    padding: 16px;
+    background-color: #555555;
+}
+
 span.psw {
     float: right;
     padding-top: 16px;
