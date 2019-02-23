@@ -48,7 +48,7 @@
         $scope.members = $scope.state.members;
 
         $scope.addMember = function () {
-            if ($scope.members.length < 5) {
+            if ($scope.members.length < $scope.state.maxNumPartyMembers) {
                 $scope.members.push({
                     name: "",
                     health: 100,
@@ -57,7 +57,7 @@
                     rations: 1
                 })
             } else {
-                alert('You can not have more than 5 party members.')
+                alert('You can not have more than ' + $scope.state.maxNumPartyMembers + ' party members.')
             }
         };
 

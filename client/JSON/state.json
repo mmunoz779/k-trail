@@ -11,6 +11,7 @@
     "ailments": [],
     "rations": 1
   }],
+  "maxNumPartyMembers": 3,
   "distance": 0,
   "items": [{"food":0},{"clothes": 0}, {"sledParts": 0}],
   "currentPace": 4,

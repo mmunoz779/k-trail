@@ -14,7 +14,6 @@
 </div>
 
 
-
 <label for="foodTxtBx">Food: ${{prices.food}} per pound</label>
 <input type="text" id="foodTxtBx" ng-model="state.items[0].food"><br>
 <label for="dogTxtBx">Huskies: ${{prices.dogs}} per husky</label>
@@ -28,9 +27,9 @@
     var app = angular.module('myApp', []);
     app.controller('shopController', function ($scope, $http, $window) {
         $scope.state = JSON.parse(sessionStorage.getItem('state'));
-        $http.get('../JSON/shop.json').success(function(data, status, headers, config) {
+        $http.get('../JSON/shop.json').success(function (data, status, headers, config) {
             $scope.prices = data;
-        }).error(function(data, status, headers, config) {
+        }).error(function (data, status, headers, config) {
             console.log("Error reading shop.json");
         });
 
@@ -38,6 +37,27 @@
             sessionStorage.setItem('state', JSON.stringify($scope.state));
             $window.location.href = '/introduction'
         }
+    }).directive("limitTo", [function () {
+        return {
+            restrict: "A",
+            link: function (scope, elem, attrs) {
+                var limit = parseInt(attrs.limitTo);
+                angular.element(elem).on("keypress", function (e) {
+                    if (this.value.length === limit) e.preventDefault();
+                });
+            }
+        };
+    }]).directive('digitsOnly', function () {
+        return {
+            require: 'ngModel',
+            link: function link(scope, element, attrs, ngModel) {
+                ngModel.$parsers.push(function (value) {
+                    var numbers = value.replace(/\D/g, '');
+                    element.val(numbers);
+                    return numbers;
+                });
+            }
+        };
     });
 </script>
 
