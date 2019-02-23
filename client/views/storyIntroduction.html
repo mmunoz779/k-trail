@@ -5,7 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
-<body>
-    <button onclick="window.location.href='/DayPrompt'">Go to day prompt</button>
+<body ng-app="myApp" ng-controller="intro", style="background-color:black;">
+    <div class="img">
+        <img src="../assets/snow.gif" alt="snow" style="width: 100%;">
+            <div class="text">
+                <div align="center">
+                    <p class="text">The year is 1901. You're on your way to the Michigan College of Mines, how exciting! You have a perilous journey ahead of you filled with many obstacles and unforeseen events.</p><br>
+                    <p class="text">Don't worry, it's not all bad news. As you make your way through the U.P. you may obtain copper that can be sold to the many towns and vendors. You'll arrive at your destination before you know it, and if you're lucky you might sell enough copper to afford tuition!</p><br>
+                    <p class="text">Good luck and dogspeed...</p><br>
+                    <button onclick="window.location.href='/DayPromptTown'">Go to day prompt</button>
+                </div>
+
+            </div>
+    </div> <!-- Adding intro snow animation -->
+
 </body>
 </html>

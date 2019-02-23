@@ -96,3 +96,16 @@ ul {
 .viewPartyTab2 {
     margin-left: 6.3%;
 }
+
+p.text {
+    color: black;
+}
+
+div.text {
+    position: absolute;
+    color: black;
+    right: 20px;
+    left: 20px;
+    bottom: 200px;
+    background: 0;
+}
