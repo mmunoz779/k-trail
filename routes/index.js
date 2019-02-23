@@ -25,4 +25,7 @@ router.use('/*', function (req, res) {
     res.status(404);
     res.send();
 });
+router.get('/DayAnimation', function (req, res, next) {
+    res.render('DayAnimation.html');
+});
 module.exports = router;
