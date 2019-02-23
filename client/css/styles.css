@@ -109,3 +109,41 @@ div.text {
     bottom: 200px;
     background: 0;
 }
+
+.bkgrnd {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.bksnow {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.town {
+     position: absolute;
+     top: 20px;
+     left: 40%;
+ }
+
+.inventory {
+    position: absolute;
+    top:0;
+    left:0;
+    clip: initial;
+}
+
+.invText {
+    position: absolute;
+    bottom: 55px;
+    left: 20px;
+}
+
+
+.townText {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}

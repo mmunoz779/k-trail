@@ -9,33 +9,36 @@
 
 
 </head>
-<body ng-app="myApp" ng-controller="WorldData">
+<body ng-app="myApp" ng-controller="WorldData", style="background-color:black;">
 
-<div class="imgcontainer" align="center">
-    <img src="../assets/town.gif" alt="town" class="town">
+<div class="bkgrnd">
+    <img src="../assets/snow.gif" alt="snow" class="bksnow" style="width: 100%;" align="center">
+    <img src="../assets/town.gif" alt="town" class="town"><br>
 </div>
 
-<p>Weather:{{state.weather}}</p>
-<p>Pace:{{state.pace}}</p>
-<p>Distance Traveled: {{state.distance}} miles </p>
+<div class="townText">
 
+    <p>You Are In Town</p>
+    <p>Weather: {{state.weather}}</p>
+    <p>Pace: {{state.pace}}</p>
+    <p>Distance Traveled: {{state.distance}} miles </p>
 
 <br>
 
-<p>You may:</p>
+<p>You May:</p>
 <button onclick="window.location.href='/DayPrompt'">Start Traveling</button>
 <button onclick="window.location.href='/inventory'">Check Inventory</button>
 <button>Change Pace</button><!-- make popup window-->
 <button onclick="window.location.href='/viewparty'">Party Status</button>
 <button>Stop to Rest</button><!-- make popup window-->
 <button onclick="window.location.href='/shop'">Go Shopping</button>
-
+</div>
 <script>
     var app = angular.module('myApp', []);
     app.controller('WorldData', function ($scope, $http) {
         $scope.state={
-            weather:'clear',
-            pace:'brisk',
+            weather:'Clear',
+            pace:'Brisk',
             distance:'0',
 
         }
