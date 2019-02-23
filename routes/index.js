@@ -14,7 +14,7 @@ router.use('/shop', function (req, res, next) {
 });
 
 router.use('/party', function (req, res, next) {
-    res.render('nameParty.html');
+    res.render('createParty.html');
 });
 
 router.use('/*', function (req, res) {

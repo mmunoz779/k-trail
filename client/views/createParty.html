@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create Party</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="partyController">
+
+<div class="party">
+    <h1>
+        Create Party<br>
+    </h1>
+
+    <button ng-click="addMember()">Add</button>
+    <br>
+
+    <div class="member">
+        <ul>
+            <li ng-repeat="member in members">
+                <h2 for="member{{$index}}">Member {{$index+1}}</h2>
+                <input type="text" id="member{{$index}}">
+                <button ng-click="removeMember(member)">Remove</button>
+            </li>
+        </ul>
+    </div>
+
+    <button ng-click="continue()">Continue</button>
+
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('partyController', function ($scope, $http, $document) {
+        $scope.members = [{
+            name: ""
+        }];
+        $scope.addMember = function () {
+            if ($scope.members.length < 5) {
+                $scope.members.push({
+                    name: ""
+                })
+            } else {
+                alert('You can not have more than 5 party members.')
+            }
+        };
+        $scope.removeMember = function (m) {
+            if ($scope.members.length <= 1) {
+                alert('You must have at least one party member.');
+            } else {
+                $scope.members = $scope.members.filter((currMember) => {
+                    return currMember !== m;
+                });
+            }
+        }
+        $scope.continue = function () {
+
+        }
+    });
+
+</script>
+
+</body>
+</html>
