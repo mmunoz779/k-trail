@@ -13,6 +13,10 @@ router.use('/shop', function (req, res, next) {
     res.render('purchasing.html');
 });
 
+router.use('/party', function (req, res, next) {
+    res.render('nameParty.html');
+});
+
 router.use('/*', function (req, res) {
     res.status(404);
     res.send();
