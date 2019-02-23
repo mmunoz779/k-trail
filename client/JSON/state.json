@@ -14,5 +14,6 @@
   "items": [],
   "currentPace": 20,
   "sled": true,
-  "dogs": 0
+  "dogs": 0,
+  "difficulty": "undergraduate"
 }

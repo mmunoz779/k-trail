@@ -33,9 +33,9 @@ app.use(bodyParser.urlencoded({extended: true})); // body parse the JSON
 
 app.use(session({
     secret: "keweenaw",
-    resave: false,
-    saveUninitialized: false,
-    name: "id"
+    saveUninitialized: true,
+    resave: true,
+    name: "gameState"
 }));
 
 // Handle routing
