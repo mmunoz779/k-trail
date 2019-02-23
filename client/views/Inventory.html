@@ -18,14 +18,15 @@
 <p>Dogs: {{state.dogs}}</p>
 <p>Sled Parts: {{state.sled}}</p>
 <p>Clothes: {{state.clothes}}</p>
-<p>Copper: {{state.copper}}</p>
-<button ng-click='returntoday'>Return to Traveling</button>
+<p>Copper: {{state.money}}</p>
+<button ng-click='returntoday()'>Return to Traveling</button>
 <script>
     var app = angular.module('myApp', []);
     app.controller('inventory', function ($scope, $http, $window) {
-        $scope.state=JSON.Parse(sessionStorage.getItem('state'));  <!-- this part is the json parse thingy -->
-        $scope.returntoday=function(){
-            sessionstorage.setItem
+        $scope.state=JSON.parse(sessionStorage.getItem('state'));  <!-- this part is the json parse thingy -->
+        $scope.returntoday=function() {
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href = '/DayPrompt';
         }
     });
 </script>
