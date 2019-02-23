@@ -17,7 +17,7 @@
 <p>Pace: {{state.pace}}</p>
 <p>Distance Traveled: {{state.distance}} miles</p>
 
-<p>You may:</p>
+<p>You May:</p>
 <input type="text" digits-only ng-model="state."/>
     <button onclick="window.location.href='/DayPrompt'">Continue Traveling</button>
     <button onclick="window.location.href='/prospecting'">Go Prospecting</button>
@@ -30,8 +30,8 @@
     var app = angular.module('myApp', []);
     app.controller('WorldData', function ($scope, $http) {
         $scope.state={
-            weather:'clear',
-            pace:'brisk',
+            weather:'Clear',
+            pace:'Brisk',
             distance:'0',
 
         }
