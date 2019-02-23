@@ -89,29 +89,6 @@ html, body {
     padding: 0;
 }
 
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.psw {
-        display: block;
-        float: none;
-    }
-
-    .cancelbtn {
-        width: 100%;
-    }
-}
-
-controlUI{
-    border: '2px solid #fff';
-    cursor: 'pointer';
-}
-
-controlText {
-    color: 'rgb(25,25,25)';
-    font: 'Roboto';
-}
-
-
 /* nav bar stylings*/
 nav {
     border-bottom: 1px solid whitesmoke;

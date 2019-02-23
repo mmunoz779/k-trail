@@ -9,6 +9,10 @@ router.use('/difficulty', function (req, res, next) {
     res.render('difficultySelect.html');
 });
 
+router.use('/shop', function (req, res, next) {
+    res.render('purchasing.html');
+});
+
 router.use('/*', function (req, res) {
     res.status(404);
     res.send();
