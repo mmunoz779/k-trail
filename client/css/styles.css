@@ -5,9 +5,10 @@ body {
 
 }
 
-h2 {
+h1 {
     font-family: "Times New Roman", Times, serif;
-    color: black;
+    font-size: 64px;
+    color: white;
 }
 
 .homeButton {
@@ -15,10 +16,11 @@ h2 {
     border: none;
     color: black;
     padding: 15px 32px;
-    margin-top: 5%;
+    margin-top: 4%;
     margin-right: 5%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 24px;
 }
