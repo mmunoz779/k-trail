@@ -122,8 +122,11 @@
 
         $scope.Rest = function () {
             $scope.incrementDay(false);
+            $scope.state.members.forEach((member) => {
+                member.health++;
+            });
             sessionStorage.setItem('state', JSON.stringify($scope.state));
-            $window.location.href = '/Rest';
+            alert("You've rested for one day and all party members gained 1 health");
         };
 
         $scope.inventory = function () {
