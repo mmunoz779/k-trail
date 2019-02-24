@@ -201,3 +201,19 @@ div.text {
     bottom: 20px;
     left: 20px;
 }
+
+.exitPartyView {
+    position: absolute;
+    background-color: #ffcc00;
+    border: none;
+    color: black;
+    padding: 15px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: "Helvetica", Times, serif;
+    font-size: 18px;
+    width: 15%;
+    right: 3%;
+    top: 5%;
+}
