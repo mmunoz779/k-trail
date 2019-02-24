@@ -8,6 +8,6 @@
   "Get Robbed": 7,
   "Member Gets Sick": 8,
   "Food Spoils": 9,
-  "Wolves": 10, // kill dogs, take foods, kill member, outrun
-  "Took Wrong Path": 11 //lose days
+  "Wolves": 10,
+  "Took Wrong Path": 11
 }
