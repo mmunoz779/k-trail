@@ -1,7 +1,9 @@
 {
-  "name": "dd",
-  "version": "1.0.0",
-  "dependencies": {
+  "Mackinac City": 0,//0 miles
+  "Sault Ste. Marie": 1, //66 miles
+  "Munising": 2,// 118 miles
+  "Iron Mountain": 3, //106 miles
+  "Houghton": 4, //112 miles
     
   }
-}
+
