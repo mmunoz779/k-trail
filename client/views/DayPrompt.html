@@ -39,12 +39,12 @@
 
     $scope.incrementDay=function(hasTraveled) {
         if (hasTraveled) {
-            $scope.state.distance += Math.floor((Math.random() + 0.15) * $scope.state.currentPace);
+            $scope.state.distance += Math.floor((Math.random() + .25) * ($scope.state.currentPace * $scope.state.paceScalar));
         }
         //triggerEvent();
         $scope.state.daysPassed += 1;
         sessionStorage.setItem('state', JSON.stringify($scope.state));
-        $window.location.href = '/DayPrompt';
+        //$window.location.href = '/DayPrompt';
     };
 
     $scope.triggerEvent=function() {
