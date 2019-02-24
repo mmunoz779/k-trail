@@ -15,9 +15,9 @@
   "distance": 0,
   "daysPassed": 0,
   "items": [{"food":0},{"clothes": 0}, {"sledParts": 0}],
-  "currentPace": 0,
+  "currentPace": 1,
   "paceScalar": 3,
   "sled": true,
-  "dogs": 0,
+  "dogs": 1,
   "difficulty": "undergraduate"
 }
