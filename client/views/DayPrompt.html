@@ -73,19 +73,20 @@
 
         $scope.updateHunger = function () {
             $scope.state.members.forEach(function (member) {
-                member.food--;
-                if ($scope.state.items[0].food >= member.rations) {
-                    if (member.food === 4 && member.rations === (2)) {
+                if(!member.food <= 0)
+                    member.food--;
+                if ($scope.state.items[0].food >= parseInt(member.rations)) {
+                    if (member.food === 4 && parseInt(member.rations) === (2)) {
                         member.food++;
                     } else {
-                        member.food += member.rations;
+                        member.food += parseInt(member.rations);
                     }
-                    if (member.food === (5)) {
+                    if (member.food === (5) && member.health <= 10) {
                         member.health++;
                     }
-                    $scope.state.items[0].food = $scope.state.items[0].food - member.rations;
+                    $scope.state.items[0].food = $scope.state.items[0].food - parseInt(member.rations);
                 }
-                if (member.food <= 0) {
+                if (member.food <= 0 && member.health > 0) {
                     member.health--;
                 }
             });
