@@ -10,15 +10,18 @@ var session = require('express-session');
 
 var app = express();
 
-var directoryArray = __dirname.split('\\');
+// Configure project directory pathway
+var OSName = "unknown os";
+if (process.platform == "win32") OSName = "Windows"; //to build a path to the directory on Windows or Mac/Linux
+var directoryArray = __dirname.split(OSName == "Windows" ? '\\' : '/');
 var projectDirectory = "";
 
 for (var i = 0; i < directoryArray.length - 1; i++) {
-    projectDirectory += directoryArray[i] + '\\';
+    projectDirectory += directoryArray[i] + (OSName == "Windows" ? '\\' : '/');
 }
 
 //View engine
-app.set('views', path.join(projectDirectory, 'client\\views')); //sets directory for either windows or mac
+app.set('views', path.join(projectDirectory, OSName != "Windows" ? 'client/views' : 'client\\views')); //sets directory for either windows or mac
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
