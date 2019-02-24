@@ -20,7 +20,7 @@
 
 <div class="dayText">
 <p>Weather: {{state.weather}}</p>
-<p>Pace: {{state.currentPace}}</p>
+    <p>Pace: {{state.currentPace * state.paceScalar}}</p>
 <p>Days passed: {{state.daysPassed}}</p>
 <p>Distance Traveled: {{state.distance}} miles</p>
 
@@ -67,6 +67,10 @@
         sessionStorage.setItem('state', JSON.stringify($scope.state));
         $window.location.href = '/Rest';
     };
+        $scope.inventory = function () {
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href = '/inventory';
+        };
     });
 </script>
 </body>
