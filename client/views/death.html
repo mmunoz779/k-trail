@@ -9,27 +9,30 @@
 
 
 </head>
-<body>
-<p>score</p>
+<body ng-app="myApp" ng-controller="scoremembers">
+<p>score={{score}}</p>
 <script>
     var app = angular.module('myApp', []);
     app.controller('scoremembers', function ($scope, $http,$window) {
         $scope.state=JSON.parse(sessionStorage.getItem('state'));
-        if (state.difficulty = "undergraduate")
-            var diff = 2;
-        else if (state.difficulty = "graduate")
-            var diff = 3;
-        else if (state.difficulty = "prospective")
-            var diff = 1;
-    var lived = $scope.state.members.filters(members)>={
-        if ($scope.state.members.health > 0)
+
+        var diff = 2;
+        if (state.difficulty == "undergraduate")
+            diff = 2;
+        else if (state.difficulty == "graduate")
+            diff = 3;
+        else if (state.difficulty == "prospective")
+            diff = 1;
+
+    var lived = $scope.state.members.filters((member)=>{
+        if (member.health > 0)
         return true;
-    }
+    });
     var alive = diff*1000*lived.length;
     });
     var distance = $scope.distance*50;
     var days = $score.daysPassed*60;
-    var score = alive+distance+days;
+    $scope.score = alive+distance+days;
 </script>
 
 

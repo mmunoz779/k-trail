@@ -19,5 +19,6 @@
   "paceScalar": 3,
   "sled": true,
   "dogs": 1,
-  "difficulty": "undergraduate"
+  "difficulty": "undergraduate",
+  "visited": [false, false, false]
 }
