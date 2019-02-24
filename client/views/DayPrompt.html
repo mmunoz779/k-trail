@@ -158,6 +158,7 @@
         };
 
         $scope.incrementDay = function (hasTraveled) {
+            $scope.updateDeath();
             if (hasTraveled) {
                 $scope.state.distance += Math.floor((Math.random() + .25) * ($scope.state.currentPace * $scope.state.paceScalar));
             }
@@ -166,6 +167,7 @@
             $scope.updateHunger();
             $scope.state.daysPassed += 1;
             sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href = '/DayPrompt';
         };
 
         $scope.prospect = function () {
@@ -186,6 +188,12 @@
             });
             sessionStorage.setItem('state', JSON.stringify($scope.state));
             alert("You've rested for one day and all party members gained 1 health");
+        };
+
+        $scope.updateDeath = function () {
+            $scope.state.members.forEach(function (member) {
+                
+            });
         };
 
         $scope.inventory = function () {
