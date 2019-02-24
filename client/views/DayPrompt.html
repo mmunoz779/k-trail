@@ -177,6 +177,20 @@
             });
         };
 
+        $scope.updateDeath = function () {
+            $scope.state.members.forEach(function (member) {
+                if (member.health <= 0) {
+                    $scope.members = $scope.members.filter((currMember) => {
+                        return currMember !== member;
+                    });
+                }
+            });
+            if ($scope.state.members.length() <= 0 ) {
+                alert("All of your party members have died.");
+                $window.location.href = '/death';
+            }
+        };
+
         $scope.incrementDay = function (hasTraveled) {
             $scope.updateDeath();
             if (hasTraveled) {
@@ -208,20 +222,6 @@
             });
             sessionStorage.setItem('state', JSON.stringify($scope.state));
             alert("You've rested for one day and all party members gained 1 health");
-        };
-
-        $scope.updateDeath = function () {
-            $scope.state.members.forEach(function (member) {
-                if (member.health <= 0) {
-                    $scope.members = $scope.members.filter((currMember) => {
-                        return currMember !== member;
-                    });
-                }
-            });
-            if ($scope.state.members.length() <= 0 ) {
-                alert("All of your party members have died.");
-                $window.location.href = '/death';
-            }
         };
 
         $scope.inventory = function () {
