@@ -180,12 +180,12 @@
         $scope.updateDeath = function () {
             $scope.state.members.forEach(function (member) {
                 if (member.health <= 0) {
-                    $scope.members = $scope.members.filter((currMember) => {
+                    $scope.state.members = $scope.state.members.filter((currMember) => {
                         return currMember !== member;
                     });
                 }
             });
-            if ($scope.state.members.length() <= 0 ) {
+            if ($scope.state.members.length <= 0 ) {
                 alert("All of your party members have died.");
                 $window.location.href = '/death';
             }
