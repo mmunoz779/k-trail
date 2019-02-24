@@ -19,63 +19,89 @@
 
 
 <div class="dayText">
-<p>Weather: {{state.weather}}</p>
+    <p>Weather: {{state.weather}}</p>
     <p>Pace: {{state.currentPace * state.paceScalar}}</p>
-<p>Days passed: {{state.daysPassed}}</p>
-<p>Distance Traveled: {{state.distance}} miles</p>
+    <p>Days passed: {{state.daysPassed}}</p>
+    <p>Distance Traveled: {{state.distance}} miles</p>
 
-<p>You May:</p>
+    <p>You May:</p>
     <button ng-click='incrementDay(true)'>Start Traveling</button>
     <button ng-click='prospect()'>Mine for Copper</button>
     <button ng-click='inventory()'>Check Inventory</button>
-    <button ng-click='Pace()'>Change Pace</button>
     <button ng-click='viewparty()'>Party Status</button>
     <button ng-click='Rest()'>Stop to Rest</button>
 </div>
 <script>
     var app = angular.module('myApp', []);
     app.controller('WorldData', function ($scope, $http, $window) {
-    $scope.state=JSON.parse(sessionStorage.getItem('state'));
 
-    $scope.incrementDay=function(hasTraveled) {
-        if (hasTraveled) {
-            $scope.state.distance += Math.floor((Math.random() + .25) * ($scope.state.currentPace * $scope.state.paceScalar));
-        }
-        triggerEvent();
-        $scope.state.daysPassed += 1;
-        sessionStorage.setItem('state', JSON.stringify($scope.state));
-    };
+        $scope.state = JSON.parse(sessionStorage.getItem('state'));
 
-    $scope.triggerEvent=function() {
-        //calculate weather
+        $scope.updatePace = function () {
+            if ($scope.state.dogs < 5 ) {
+                $scope.state.currentPace = $scope.state.dogs;
+            } else {
+                $scope.state.currentPace = 4;
+            }
+        };
 
-        //distance events
-        //random events
-    }
+        $scope.updatePace();
 
-    $scope.prospect=function() {
-        incrementDay(false);
-        sessionStorage.setItem('state', JSON.stringify($scope.state));
-        $window.location.href = '/prospecting';
-    };
-    $scope.Pace=function() {
-        sessionStorage.setItem('state', JSON.stringify($scope.state));
-        $window.location.href = '/Pace';
-    };
-    $scope.viewparty=function() {
-        sessionStorage.setItem('state', JSON.stringify($scope.state));
-        $window.location.href = '/viewparty';
-    };
-    $scope.Rest=function() {
-        incrementDay(false);
-        sessionStorage.setItem('state', JSON.stringify($scope.state));
-        $window.location.href = '/Rest';
-    };
+        $http.get('../JSON/weather_events.json').success(function (data, status, headers, config) {
+            $scope.weatherEvents = data;
+        }).error(function (data, status, headers, config) {
+            console.log("Error reading weather_events.json");
+        });
+
+        $http.get('../JSON/distance_events.json').success(function (data, status, headers, config) {
+            $scope.distanceEvents = data;
+        }).error(function (data, status, headers, config) {
+            console.log("Error reading distance_events.json");
+        });
+
+        $http.get('../JSON/random_events.json').success(function (data, status, headers, config) {
+            $scope.randomEvents = data;
+        }).error(function (data, status, headers, config) {
+            console.log("Error random_events.json");
+        });
+
+        $scope.triggerEvent = function () {
+            
+        };
+
+        $scope.incrementDay = function (hasTraveled) {
+            if (hasTraveled) {
+                $scope.state.distance += Math.floor((Math.random() + .25) * ($scope.state.currentPace * $scope.state.paceScalar));
+            }
+            $scope.triggerEvent();
+            $scope.updatePace();
+            $scope.state.daysPassed += 1;
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+        };
+
+        $scope.prospect = function () {
+            $scope.incrementDay(false);
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href = '/prospecting';
+        };
+
+        $scope.viewparty = function () {
+            $scope.sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href = '/viewparty';
+        };
+
+        $scope.Rest = function () {
+            $scope.incrementDay(false);
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href = '/Rest';
+        };
+
         $scope.inventory = function () {
             sessionStorage.setItem('state', JSON.stringify($scope.state));
             $window.location.href = '/inventory';
         };
     });
+
 </script>
 </body>
 </html>

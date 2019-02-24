@@ -16,6 +16,7 @@
     <img src="../assets/town.gif" alt="town" class="town"><br>
 </div>
 
+
 <div class="townText">
     <p>You Are In Town</p>
     <p>Weather: {{state.weather}}</p>
@@ -25,7 +26,6 @@
 <p>You May:</p>
 <button ng-click='returntoday()'>Get on the Road</button>
 <button ng-click='inventory()'>Check Inventory</button>
-<button ng-click='Pace()'>Change Pace</button>
 <button ng-click='viewparty()'>Party Status</button>
 <button ng-click='Rest()'>Stop to Rest</button>
 <button ng-click='shop()'>Go Shopping</button>
@@ -34,6 +34,13 @@
     var app = angular.module('myApp', []);
     app.controller('WorldData', function ($scope, $http,$window) {
         $scope.state=JSON.parse(sessionStorage.getItem('state'));
+
+        if ($scope.state.dogs < 5 ) {
+            $scope.state.currentPace = $scope.state.dogs;
+        } else {
+            $scope.state.currentPace = 4;
+        }
+
         $scope.returntoday=function() {
             sessionStorage.setItem('state', JSON.stringify($scope.state));
             $window.location.href = '/DayPrompt';
@@ -49,10 +56,6 @@
         $scope.shop=function() {
             sessionStorage.setItem('state', JSON.stringify($scope.state));
             $window.location.href = '/shop';
-        };
-        $scope.Pace=function() {
-            sessionStorage.setItem('state', JSON.stringify($scope.state));
-            $window.location.href = '/Pace';
         };
         $scope.Rest=function() {
             sessionStorage.setItem('state', JSON.stringify($scope.state));
