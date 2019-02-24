@@ -8,43 +8,50 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 </head>
 
-<body ng-app="myApp" ng-controller="partyStatusController">
+<body ng-app="myApp" ng-controller="partyStatusController", style="background-color:black;">>
 
-<div align="center">
-    <h2>
-        Party Status
-    </h2>
+<div class="darkBk">
+    <img src="../assets/darkBk.png" alt="dark" style="width: 100%;">
+    <img src="../assets/darkBk.png" alt="dark" style="width: 100%;">
+    <img src="../assets/darkBk.png" alt="dark" style="width: 100%;">
 </div>
 
-<div align="left">
-    <ul>
-        <li ng-repeat="member in state.members">
-            <h3>{{member.name}}:</h3>
-            <h4 class="viewPartyTab1">Health
-                <progress class="viewPartyTab1" id="health" value={{member.health}} max="100"></progress>
-            </h4>
-            <h4 class="viewPartyTab1">Food
-                <progress class="viewPartyTab2" id="food" value={{member.food}} max="100"></progress>
-            </h4>
-            <label>
-                <select class="viewPartyTab1" ng-model="member.rations">
-                    <option value="0" ng-selected="member.rations == 0">0</option>
-                    <option value="1" ng-selected="member.rations == 1">1</option>
-                    <option value="2" ng-selected="member.rations == 2">2</option>
-                </select>
-            </label> rations per day
-            <h4 class="viewPartyTab1">Ailments: </h4>
-            <h4 class="viewPartyTab1">
-                <ul class="bulletUL">
-                    <li ng-repeat="ailment in member.ailments">
-                        {{ailment}}
-                    </li>
-                </ul>
-            </h4>
-        </li>
-    </ul>
-</div>
+<div class="partyText">
+    <div align="center">
+        <h2>
+            Party Status
+        </h2>
+    </div>
 
+    <div align="left">
+        <ul>
+            <li ng-repeat="member in state.members">
+                <h3>{{member.name}}:</h3>
+                <h4 class="viewPartyTab1">Health
+                    <progress class="viewPartyTab1" id="health" value={{member.health}} max="100"></progress>
+                </h4>
+                <h4 class="viewPartyTab1">Food
+                    <progress class="viewPartyTab2" id="food" value={{member.food}} max="100"></progress>
+                </h4>
+                <label>
+                    <select class="viewPartyTab1" ng-model="member.rations">
+                        <option value="0" ng-selected="member.rations == 0">0</option>
+                        <option value="1" ng-selected="member.rations == 1">1</option>
+                        <option value="2" ng-selected="member.rations == 2">2</option>
+                    </select>
+                </label> rations per day
+                <h4 class="viewPartyTab1">Ailments: </h4>
+                <h4 class="viewPartyTab1">
+                    <ul class="bulletUL">
+                        <li ng-repeat="ailment in member.ailments">
+                            {{ailment}}
+                        </li>
+                    </ul>
+                </h4>
+            </li>
+        </ul>
+    </div>
+</div>
 <script>
     var app = angular.module('myApp', []);
     app.controller('partyStatusController', function ($scope, $http, $window) {
