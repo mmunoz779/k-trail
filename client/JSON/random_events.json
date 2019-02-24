@@ -1,13 +1,13 @@
-{
-  "blizzard": 1,
-  "Icey River": 2,
-  "Sled Breaks Down": 3,
-  "Dog Dies from sickness": 4,
-  "Dog Dies from exhaustion": 5,
-  "Clothes Rip": 6,
-  "Get Robbed": 7,
-  "Member Gets Sick": 8,
-  "Food Spoils": 9,
-  "Wolves": 10,
-  "Took Wrong Path": 11
-}
+[
+  "blizzard",
+  "Icey River",
+  "Sled Breaks Down",
+  "Dog Dies from sickness",
+  "Dog Dies from exhaustion",
+  "Clothes Rip",
+  "Get Robbed",
+  "Member Gets Sick",
+  "Food Spoils",
+  "Wolves",
+  "Took Wrong Path"
+]
