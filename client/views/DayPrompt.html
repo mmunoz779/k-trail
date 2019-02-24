@@ -32,6 +32,9 @@
     <button ng-click='Rest()'>Stop to Rest</button>
 </div>
 <script>
+    var beenMarie = false;
+    var beenMunising = false;
+    var beenIronMtn = false;
     var app = angular.module('myApp', []);
     app.controller('WorldData', function ($scope, $http, $window) {
 
@@ -75,10 +78,27 @@
                 $scope.state.weather = $scope.weatherEvents[Math.floor(Math.random() * 6)];
             }
             //distance events
-            var beenMarie = false;
-            var beenmunising = false;
-            let tempDistance = $scope.state.distance;
-            //if (tempDistance >=)
+            const tempDistance = $scope.state.distance;
+            if (tempDistance >= 66 && beenMarie === false) {
+                $scope.state.location = "Sault Ste. Marie";
+                $scope.state.locationType = "town";
+                beenMarie = true;
+            } else if (tempDistance >= 184 && beenMunising === false) {
+                $scope.state.location = "Munising";
+                $scope.state.locationType = "town";
+                beenMunising = true;
+            } else if (tempDistance >= 290 && beenIronMtn === false) {
+                $scope.state.location = "Iron Mountain";
+                $scope.state.locationType = "town";
+                beenIronMtn = true;
+            } else if (tempDistance >= 402) {
+                $scope.state.location = "Houghton";
+                $scope.state.locationType = "town";
+            } else {
+                $scope.state.location = "wild";
+                $scope.state.locationType = "wild";
+            }
+
             //random events
             if (Math.random() <= 0.1) {
                 $scope.event = $scope.randomEvents[Math.floor(Math.random() * 10)];
@@ -157,6 +177,20 @@
             });
         };
 
+        $scope.updateDeath = function () {
+            $scope.state.members.forEach(function (member) {
+                if (member.health <= 0) {
+                    $scope.members = $scope.members.filter((currMember) => {
+                        return currMember !== member;
+                    });
+                }
+            });
+            if ($scope.state.members.length() <= 0 ) {
+                alert("All of your party members have died.");
+                $window.location.href = '/death';
+            }
+        };
+
         $scope.incrementDay = function (hasTraveled) {
             $scope.updateDeath();
             if (hasTraveled) {
@@ -188,12 +222,6 @@
             });
             sessionStorage.setItem('state', JSON.stringify($scope.state));
             alert("You've rested for one day and all party members gained 1 health");
-        };
-
-        $scope.updateDeath = function () {
-            $scope.state.members.forEach(function (member) {
-                
-            });
         };
 
         $scope.inventory = function () {

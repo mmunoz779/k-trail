@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>death</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../css/styles.css">
+    <meta charset="UTF-8">
+    <title>Victory</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 
-
 </head>
 <body>
-<p>score</p>
+
+<h1> CONGRATULATIONS!!! </h1><br>
+
 <script>
     var app = angular.module('myApp', []);
     app.controller('scoremembers', function ($scope, $http,$window) {
@@ -21,21 +21,16 @@
             var diff = 3;
         else if (state.difficulty = "prospective")
             var diff = 1;
-    var lived = $scope.state.members.filters(members)>={
-        if ($scope.state.members.health > 0)
+        var lived = $scope.state.members.filters(members)>={
+            if ($scope.state.members.health > 0)
         return true;
     }
-    var alive = diff*1000*lived.length;
+        var alive = diff*1000*lived.length;
     });
     var distance = $scope.distance*50;
     var days = $score.daysPassed*60;
     var score = alive+distance+days;
 </script>
 
-
-<div class="imgcontainer" align="center">
-    <img src="../assets/died.gif" alt="died" class="died">
-</div>
-<button class="deathButton" onclick="window.location.href='/'" >Try Again</button>
 </body>
 </html>
