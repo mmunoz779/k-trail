@@ -11,7 +11,6 @@
 <body ng-app="myApp" ng-controller="shopController" style="background-color:black;">
 
 
-
 <div class="bkgrnd">
     <img src="../assets/snow.gif" alt="snow" class="bksnow" style="width: 100%;" align="center">
     <img src="../assets/vendor.png" alt="vendor" class="vendor">
@@ -55,20 +54,23 @@
                 alert('You do not have enough money for this purchase, please reduce quantities');
             } else if (isNaN($scope.state.items[2].sledParts) || isNaN($scope.state.dogs) || isNaN($scope.state.items[0].food) || isNaN($scope.state.items[1].clothes)) {
                 alert('Must have a quantity for each item.');
+            } else if ($scope.state.dogs < 1) {
+                alert('You must have at least 1 dog');
             } else {
                 $scope.state.money -= $scope.calculateCost();
-                sessionStorage.setItem('state', JSON.stringify($scope.state));
-                $window.location.href = '/introduction';
             }
-        };
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+            $window.location.href = '/introduction';
+        }
+    };
 
-        $scope.calculateCost = function () {
-            var temp = ($scope.prices.food * parseInt($scope.state.items[0].food)) + ($scope.prices.dogs * parseInt($scope.state.dogs)) + ($scope.prices.sled * parseInt($scope.state.items[2].sledParts)) + ($scope.prices.clothes * parseInt($scope.state.items[1].clothes));
-            if (!isNaN(temp)) {
-                $scope.prevCost = temp;
-            }
-            return $scope.prevCost;
-        };
+    $scope.calculateCost = function () {
+        var temp = ($scope.prices.food * parseInt($scope.state.items[0].food)) + ($scope.prices.dogs * parseInt($scope.state.dogs)) + ($scope.prices.sled * parseInt($scope.state.items[2].sledParts)) + ($scope.prices.clothes * parseInt($scope.state.items[1].clothes));
+        if (!isNaN(temp)) {
+            $scope.prevCost = temp;
+        }
+        return $scope.prevCost;
+    };
 
     }).directive("limitTo", [function () {
         return {
@@ -94,7 +96,7 @@
     });
 </script>
 
-<button class="help" onclick="window.location.href='/help'"> ? </button>
+<button class="help" onclick="window.location.href='/help'"> ?</button>
 
 </body>
 </html>
