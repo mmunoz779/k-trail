@@ -8,97 +8,35 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 
 </head>
-<body ng-app="myApp" ng-controller="shopController">
-<p>Available Money: {{state.money}} copper</p>
-<p>Cost of goods: {{calculateCost() || prevCost}} copper</p>
-<p>Remaining Money: {{state.money - (calculateCost() || prevCost)}} copper</p>
+<body ng-app="myApp" ng-controller="shopController" style="background-color:black;">
 
-<label for="foodTxtBx">Food: {{prices.food}} copper per pound</label>
-<input required type="text" id="foodTxtBx" digits-only ng-keydown="block($event)"
-       ng-model="newItems.food"><br>
-<label for="dogTxtBx">Huskies: {{prices.dogs}} copper per husky</label>
-<input required type="text" id="dogTxtBx" digits-only ng-keydown="block($event)" ng-model="newItems.dogs"><br>
-<label for="sledTxtBx">Spare Sled Parts: {{prices.sled}} copper per part</label>
-<input required type="text" id="sledTxtBx" digits-only ng-keydown="block($event)"
-       ng-model="newItems.sledParts"><br>
-<label for="clothesTxtBx">Clothes: {{prices.clothes}} copper per hat that covers your ears</label>
-<input required type="text" id="clothesTxtBx" digits-only ng-keydown="block($event)"
-       ng-model="newItems.clothes"><br>
-<button ng-click="navigateDay()">Finish</button>
+
+
+<label for="foodTxtBx">food {{prices.food}}</label>
+<input type="text" id="foodTxtBx">
+<label for="dogTxtBx">Spare dogs {{prices.dogs}}</label>
+<input type="text" id="dogTxtBx">
+<label for="sledTxtBx">Spare sled parts {{prices.sled}}</label>
+<input type="text" id="sledTxtBx">
+<label for="clothesTxtBx">Clothes {{prices.clothes}}</label>
+<input type="text" id="clothesTxtBx">
 
 <script>
     var app = angular.module('myApp', []);
-    app.controller('shopController', function ($scope, $http, $window) {
-        $scope.state = JSON.parse(sessionStorage.getItem('state'));
-
-        $scope.prevCost = 0;
-
-        $scope.newItems = {
-            food: 0,
-            clothes: 0,
-            sledParts: 0,
-            dogs: 0
-        };
-
-        $http.get('../JSON/shop.json').success(function (data, status, headers, config) {
+    app.controller('shopController', function ($scope, $http) {
+        $http.get('../JSON/shop.json').success(function(data, status, headers, config) {
             $scope.prices = data;
-            $scope.prices.food *= Math.ceil(Math.random() + .5);
-            $scope.prices.clothes *= Math.ceil(Math.random() + .5);
-            $scope.prices.sled *= Math.ceil(Math.random() + .15);
-            $scope.prices.dogs *= Math.ceil(Math.random() + .2);
-        }).error(function (data, status, headers, config) {
+            $scope.prices.food *=  Math.ceil(Math.random()+.5);
+            $scope.prices.clothes *=  Math.ceil(Math.random()+.5);
+            $scope.prices.sled *=  Math.ceil(Math.random()+.15);
+            $scope.prices.dogs *= Math.ceil(Math.random()+.2);
+        }).error(function(data, status, headers, config) {
             console.log("Error reading shop.json");
         });
-
-        $scope.navigateDay = function () {
-            if ($scope.state.money - $scope.calculateCost() < 0) {
-                alert('You do not have enough money for this purchase, please reduce quantities');
-            } else if (isNaN($scope.newItems.sledParts) || isNaN($scope.newItems.dogs) || isNaN($scope.newItems.food) || isNaN($scope.newItems.clothes)) {
-                alert('Must have a quantity for each item.');
-            } else {
-                $scope.state.items[0].food += parseInt($scope.newItems.food);
-                $scope.state.items[1].clothes += parseInt($scope.newItems.clothes);
-                $scope.state.dogs += parseInt($scope.newItems.dogs);
-                $scope.state.items[2].sledParts += parseInt($scope.newItems.sledParts);
-
-                $scope.state.money -= $scope.calculateCost();
-                sessionStorage.setItem('state', JSON.stringify($scope.state));
-                $window.location.href = '/DayPrompt';
-            }
-        };
-
-        $scope.calculateCost = function () {
-            var temp = ($scope.prices.food * parseInt($scope.newItems.food)) + ($scope.prices.dogs * parseInt($scope.newItems.dogs)) + ($scope.prices.sled * parseInt($scope.newItems.sledParts)) + ($scope.prices.clothes * parseInt($scope.newItems.clothes));
-            if (!isNaN(temp)) {
-                $scope.prevCost = temp;
-            }
-            return $scope.prevCost;
-        };
-
-    }).directive("limitTo", [function () {
-        return {
-            restrict: "A",
-            link: function (scope, elem, attrs) {
-                var limit = parseInt(attrs.limitTo);
-                angular.element(elem).on("keypress", function (e) {
-                    if (this.value.length === limit) e.preventDefault();
-                });
-            }
-        };
-    }]).directive('digitsOnly', function () {
-        return {
-            require: 'ngModel',
-            link: function link(scope, element, attrs, ngModel) {
-                ngModel.$parsers.push(function (value) {
-                    var numbers = value.replace(/\D/g, '');
-                    element.val(numbers);
-                    return numbers;
-                });
-            }
-        };
     });
-
 </script>
+
+<button class="help" onclick="window.location.href='/help'"> ? </button>
 
 </body>
 </html>

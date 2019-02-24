@@ -10,7 +10,8 @@
 </head>
 
 
-<body ng-app="myApp" ng-controller="WorldData">
+<body ng-app="myApp" ng-controller="WorldData" style="background-color:black;">
+
 
 <div class="bkgrnd">
     <img src="../assets/snow.gif" alt="snow" class="bksnow" style="width: 100%;" align="center">
@@ -121,9 +122,12 @@
         };
 
         $scope.Rest = function () {
-            $scope.incrementDay(false);
-            sessionStorage.setItem('state', JSON.stringify($scope.state));
-            $window.location.href = '/Rest';
+            $scope.incrementDay(true);
+            $scope.state.members.forEach(function (member) {
+                if (member.health < 10){
+                    member.health++;
+                }
+            });
         };
 
         $scope.inventory = function () {
@@ -134,5 +138,9 @@
     });
 
 </script>
+
+<button class="help" onclick="window.location.href='/help'"> ? </button>
+
+
 </body>
 </html>

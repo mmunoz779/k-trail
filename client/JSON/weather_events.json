@@ -1,8 +1,3 @@
 {
-  "where a hat that covers your ears": 0,
-  "cold": 1,
-  "frosty": 2,
-  "snowy": 3,
-  "chilly": 4,
-  "artic": 5,
+  "blizzard": 0,
 }

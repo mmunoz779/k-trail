@@ -8,7 +8,9 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 </head>
 
-<body ng-app="myApp" ng-controller="homeController">
+<body ng-app="myApp" ng-controller="homeController" style="background-color:black;">
+
+
 
 <div class="container>">
     <h1 align="center">Keweenaw Trail</h1>
@@ -19,6 +21,8 @@
     <div align="center">
         <button class="homeButton" style="margin-left: 6%" onclick="window.location.href='/difficulty'"> Begin Your Adventure </button>
     </div>
+
+
 
 </div>
 <script>
@@ -32,7 +36,11 @@
         }).error(function() {
             console.log("Error reading shop.json");
         });
+
     });
 </script>
+
+<button class="help" onclick="window.location.href='/help'"> ? </button>
+
 </body>
 </html>

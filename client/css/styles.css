@@ -4,6 +4,21 @@ body {
     color: #ffffff;
 }
 
+.help {
+    position: absolute;
+    width: 20px;
+    length: 20px;
+    display: block;
+    text-align: center;
+    padding: 1px 0;
+    border: 1px solid #444444;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 12px;
+    top: 2%;
+    left: 1%;
+}
+
 h1 {
     font-family: "Times New Roman", Times, serif;
     font-size: 64px;
@@ -217,3 +232,4 @@ div.text {
     right: 3%;
     top: 5%;
 }
+

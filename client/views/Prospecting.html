@@ -15,7 +15,9 @@
     <img src="../assets/prospecting.png" alt="prospecting" class="prospecting" style="width: 60%;" align="center">
 </div>
 
-<body ng-app="myApp" ng-controller="prospecting">
+<body ng-app="myApp" ng-controller="prospecting" style="background-color:black;">
+
+
 
 <div class="prosText">
     <button ng-click='returntoday()'>Get back on the road</button>
@@ -37,10 +39,10 @@
         var Human = Math.random() * 100;
         if (Human > 91) {
             $scope.state.money += $scope.results.bigwin;
-            $scope.output = 'You struck a vein and found a lot of copper.';
+            $scope.output = 'You struck a vein and found a lot of copper. +40 copper';
         } else if (Human > Computer) {
             $scope.state.money += $scope.results.win;
-            $scope.output = 'Had yourself a day at the mines and took home some copper';
+            $scope.output = 'Had yourself a day at the mines and took home some copper. +20 copper';
         } else {
             $scope.state.money += $scope.results.lose;
             $scope.output = 'You cant win them all, you found no copper';
@@ -52,5 +54,8 @@
         };
     });
 </script>
+
+<button class="help" onclick="window.location.href='/help'"> ? </button>
+
 </body>
 </html>
