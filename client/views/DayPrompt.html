@@ -40,7 +40,7 @@
 
         $scope.state = JSON.parse(sessionStorage.getItem('state'));
 
-        if ($scope.state.locationType == 'town') {
+        if ($scope.state.locationType === 'town') {
             $window.location.href = '/DayPromptTown';
         }
 
