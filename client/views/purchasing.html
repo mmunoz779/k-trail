@@ -22,13 +22,16 @@
     <p>Remaining Money: {{state.money - (calculateCost() || prevCost)}} copper</p>
 
     <label for="foodTxtBx">Food: {{prices.food}} copper per pound</label>
-    <input required type="text" id="foodTxtBx" digits-only ng-keydown="block($event)" ng-model="state.items[0].food"><br>
+    <input required type="text" id="foodTxtBx" digits-only ng-keydown="block($event)"
+           ng-model="state.items[0].food"><br>
     <label for="dogTxtBx">Huskies: {{prices.dogs}} copper per husky</label>
     <input required type="text" id="dogTxtBx" digits-only ng-keydown="block($event)" ng-model="state.dogs"><br>
     <label for="sledTxtBx">Spare Sled Parts: {{prices.sled}} copper per part</label>
-    <input required type="text" id="sledTxtBx" digits-only ng-keydown="block($event)" ng-model="state.items[2].sledParts"><br>
+    <input required type="text" id="sledTxtBx" digits-only ng-keydown="block($event)"
+           ng-model="state.items[2].sledParts"><br>
     <label for="clothesTxtBx">Clothes: {{prices.clothes}} copper per hat that covers your ears</label>
-    <input required type="text" id="clothesTxtBx" digits-only ng-keydown="block($event)" ng-model="state.items[1].clothes"><br>
+    <input required type="text" id="clothesTxtBx" digits-only ng-keydown="block($event)"
+           ng-model="state.items[1].clothes"><br>
     <button ng-click="navigateParty()">Finish</button>
 </div>
 
@@ -46,8 +49,15 @@
         });
 
         $scope.navigateParty = function () {
-            sessionStorage.setItem('state', JSON.stringify($scope.state));
-            $window.location.href = '/introduction';
+            if ($scope.state.money - $scope.calculateCost() < 0) {
+                alert('You do not have enough money for this purchase, please reduce quantities');
+            } else if (isNaN($scope.state.items[2].sledParts) || isNaN($scope.state.dogs) || isNaN($scope.state.items[0].food) || isNaN($scope.state.items[1].clothes)) {
+                alert('Must have a quantity for each item.');
+            } else {
+                $scope.state.money -= $scope.calculateCost();
+                sessionStorage.setItem('state', JSON.stringify($scope.state));
+                $window.location.href = '/introduction';
+            }
         };
 
         $scope.calculateCost = function () {
@@ -56,17 +66,6 @@
                 $scope.prevCost = temp;
             }
             return $scope.prevCost;
-        };
-
-        // Prevent enter in points from deleting choices
-        $scope.block = (event) => {
-            var temp = $scope.state.money - ($scope.prices.food * parseInt($scope.state.items[0].food)) + ($scope.prices.dogs * parseInt($scope.state.dogs)) + ($scope.prices.sled * parseInt($scope.state.items[2].sledParts)) + ($scope.prices.clothes * parseInt($scope.state.items[1].clothes));
-            if (event.which !== 8 && temp < 0) {
-                event.preventDefault();
-                return false;
-            } else {
-                console.log(temp);
-            }
         };
 
     }).directive("limitTo", [function () {
@@ -92,7 +91,6 @@
         };
     });
 </script>
-
 
 
 </body>
