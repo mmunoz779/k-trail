@@ -37,6 +37,10 @@
 
         $scope.state = JSON.parse(sessionStorage.getItem('state'));
 
+        if ($scope.state.locationType == 'town') {
+            $window.location.href = '/DayPromptTown';
+        }
+
         $scope.updatePace = function () {
             if ($scope.state.dogs < 5) {
                 $scope.state.currentPace = $scope.state.dogs;

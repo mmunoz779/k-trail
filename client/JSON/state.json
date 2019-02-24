@@ -2,7 +2,7 @@
   "turn": 0,
   "weather": "cold",
   "location": "Mackinac",
-  "locationType": "Town",
+  "locationType": "town",
   "money": 2000,
   "members": [{
     "name": "Driver",
