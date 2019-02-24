@@ -44,6 +44,7 @@
         }
 
         $scope.returntoday=function() {
+            $scope.state.locationType = 'wild';
             sessionStorage.setItem('state', JSON.stringify($scope.state));
             $window.location.href = '/DayPrompt';
         };
