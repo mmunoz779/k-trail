@@ -13,20 +13,26 @@
     <img src="../assets/vendor.png" alt="vendor" class="vendor">
 </div>
 
+<p>Starting Money: {{state.money}} copper</p>
+<p>Cost of goods: {{calculateCost() || prevCost}} copper</p>
+<p>Remaining Money: {{state.money - (calculateCost() || prevCost)}} copper</p>
 
-<label for="foodTxtBx">Food: ${{prices.food}} per pound</label>
-<input type="text" id="foodTxtBx" ng-model="state.items[0].food"><br>
-<label for="dogTxtBx">Huskies: ${{prices.dogs}} per husky</label>
-<input type="text" id="dogTxtBx" ng-model="state.dogs"><br>
-<label for="sledTxtBx">Spare Sled Parts: ${{prices.sled}} per part</label>
-<input type="text" id="sledTxtBx" ng-model="state.items[2].sledParts"><br>
-<label for="clothesTxtBx">Clothes: ${{prices.clothes}} per hat that covers your ears</label>
-<input type="text" id="clothesTxtBx" ng-model="state.items[1].clothes"><br>
+<label for="foodTxtBx">Food: {{prices.food}} copper per pound</label>
+<input type="text" id="foodTxtBx" digits-only ng-keypress="block($event)" ng-model="state.items[0].food"><br>
+<label for="dogTxtBx">Huskies: {{prices.dogs}} copper per husky</label>
+<input type="text" id="dogTxtBx" digits-only ng-keypress="block($event)" ng-model="state.dogs"><br>
+<label for="sledTxtBx">Spare Sled Parts: {{prices.sled}} copper per part</label>
+<input type="text" id="sledTxtBx" digits-only ng-keypress="block($event)" ng-model="state.items[2].sledParts"><br>
+<label for="clothesTxtBx">Clothes: {{prices.clothes}} copper per hat that covers your ears</label>
+<input type="text" id="clothesTxtBx" digits-only ng-keypress="block($event)" ng-model="state.items[1].clothes"><br>
 
 <script>
     var app = angular.module('myApp', []);
     app.controller('shopController', function ($scope, $http, $window) {
         $scope.state = JSON.parse(sessionStorage.getItem('state'));
+
+        $scope.prevCost = 0;
+
         $http.get('../JSON/shop.json').success(function (data, status, headers, config) {
             $scope.prices = data;
         }).error(function (data, status, headers, config) {
@@ -35,8 +41,26 @@
 
         $scope.navigateParty = function () {
             sessionStorage.setItem('state', JSON.stringify($scope.state));
-            $window.location.href = '/introduction'
-        }
+            $window.location.href = '/introduction';
+        };
+
+        $scope.calculateCost = function () {
+            var temp = ($scope.prices.food * parseInt($scope.state.items[0].food)) + ($scope.prices.dogs * parseInt($scope.state.dogs)) + ($scope.prices.sled * parseInt($scope.state.items[2].sledParts)) + ($scope.prices.clothes * parseInt($scope.state.items[1].clothes));
+            if (!isNaN(temp)) {
+                $scope.prevCost = temp;
+            }
+            return $scope.prevCost;
+        };
+
+        // Prevent enter in points from deleting choices
+        $scope.block = (event) => {
+            var temp = ($scope.prices.food * parseInt($scope.state.items[0].food)) + ($scope.prices.dogs * parseInt($scope.state.dogs)) + ($scope.prices.sled * parseInt($scope.state.items[2].sledParts)) + ($scope.prices.clothes * parseInt($scope.state.items[1].clothes));
+            if (event.which !== 8 && temp < 0) {
+                event.preventDefault();
+                return false;
+            }
+        };
+
     }).directive("limitTo", [function () {
         return {
             restrict: "A",
