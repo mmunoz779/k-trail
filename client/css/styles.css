@@ -62,10 +62,6 @@ p {
 }
 
 .createPartyButton {
-    position: absolute;
-
-    right: 2%;
-    top: 3%;
     background-color: #ffcc00;
     border: none;
     color: black;
@@ -192,4 +188,16 @@ div.text {
     position: absolute;
     top: 10%;
     left: 33%;
+}
+
+.vendor {
+    position: absolute;
+    top: 2%;
+    left: 40%;
+}
+
+.purchText {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
 }

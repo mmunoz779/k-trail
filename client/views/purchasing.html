@@ -8,23 +8,29 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <script src="../js/constants.js"></script>
 </head>
-<body ng-app="myApp" ng-controller="shopController">
-<div class="imgcontainer" align="center">
+<body ng-app="myApp" ng-controller="shopController" style="background-color:black;">
+
+<div class="bkgrnd">
+    <img src="../assets/snow.gif" alt="snow" class="bksnow" style="width: 100%;" align="center">
     <img src="../assets/vendor.png" alt="vendor" class="vendor">
 </div>
 
-<p>Starting Money: {{state.money}} copper</p>
-<p>Cost of goods: {{calculateCost() || prevCost}} copper</p>
-<p>Remaining Money: {{state.money - (calculateCost() || prevCost)}} copper</p>
 
-<label for="foodTxtBx">Food: {{prices.food}} copper per pound</label>
-<input type="text" id="foodTxtBx" digits-only ng-keypress="block($event)" ng-model="state.items[0].food"><br>
-<label for="dogTxtBx">Huskies: {{prices.dogs}} copper per husky</label>
-<input type="text" id="dogTxtBx" digits-only ng-keypress="block($event)" ng-model="state.dogs"><br>
-<label for="sledTxtBx">Spare Sled Parts: {{prices.sled}} copper per part</label>
-<input type="text" id="sledTxtBx" digits-only ng-keypress="block($event)" ng-model="state.items[2].sledParts"><br>
-<label for="clothesTxtBx">Clothes: {{prices.clothes}} copper per hat that covers your ears</label>
-<input type="text" id="clothesTxtBx" digits-only ng-keypress="block($event)" ng-model="state.items[1].clothes"><br>
+<div class="purchText">
+    <p>Starting Money: {{state.money}} copper</p>
+    <p>Cost of goods: {{calculateCost() || prevCost}} copper</p>
+    <p>Remaining Money: {{state.money - (calculateCost() || prevCost)}} copper</p>
+
+    <label for="foodTxtBx">Food: {{prices.food}} copper per pound</label>
+    <input type="text" id="foodTxtBx" digits-only ng-keypress="block($event)" ng-model="state.items[0].food"><br>
+    <label for="dogTxtBx">Huskies: {{prices.dogs}} copper per husky</label>
+    <input type="text" id="dogTxtBx" digits-only ng-keypress="block($event)" ng-model="state.dogs"><br>
+    <label for="sledTxtBx">Spare Sled Parts: {{prices.sled}} copper per part</label>
+    <input type="text" id="sledTxtBx" digits-only ng-keypress="block($event)" ng-model="state.items[2].sledParts"><br>
+    <label for="clothesTxtBx">Clothes: {{prices.clothes}} copper per hat that covers your ears</label>
+    <input type="text" id="clothesTxtBx" digits-only ng-keypress="block($event)" ng-model="state.items[1].clothes"><br>
+    <button ng-click="navigateParty()">Finish</button>
+</div>
 
 <script>
     var app = angular.module('myApp', []);
@@ -85,7 +91,7 @@
     });
 </script>
 
-<button ng-click="navigateParty()">Finish</button>
+
 
 </body>
 </html>
