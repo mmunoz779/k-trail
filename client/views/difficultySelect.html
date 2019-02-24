@@ -4,10 +4,12 @@
     <title>Select Difficulty</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+
 </head>
 
-<body>
-
+<body ng-app="myApp" ng-controller="difficultyController">
 <div class="difficulty" align="center">
 
     <h2>
@@ -19,29 +21,50 @@
         Prospective Student<br>
     </h3>
     <p>
-        Starts off with [] copper.<br>
+        Starts off with [3000] copper.<br>
         Get 1x points per surviving party member.<br>
-        <button class="difficultyButton" onclick="window.location.href='/createparty'">Select</button><br>
+        <br>
+        <button class="difficultyButton" ng-click='prospective()'>Select</button>
     </p>
 
     <h3>
         Undergraduate<br>
     </h3>
     <p>
-        Starts off with [] copper.<br>
+        Starts off with [2000] copper.<br>
         Get 2x points per surviving party member.<br>
-        <button class="difficultyButton" onclick="window.location.href='/createparty'">Select</button><br>
+        <button class="difficultyButton" ng-click='undergraduate()'>Select</button>
     </p>
     <h3>
         Graduate<br>
     </h3>
     <p>
-        Starts off with [] copper.<br>
+        Starts off with [1000] copper.<br>
         Get 3x points per surviving party member.<br>
-        <button class="difficultyButton" onclick="window.location.href='/createparty'">Select</button><br>
+        <button class="difficultyButton" ng-click='graduate()'>Select</button>
     </p>
 
 </div>
-
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('difficultyController', function ($scope, $http,$window) {
+        $scope.state = JSON.parse(sessionStorage.getItem('state'));
+    $scope.prospective=function() {
+        $scope.state.money *= 1.5;
+        sessionStorage.setItem('state', JSON.stringify($scope.state));
+        $window.location.href = '/createparty';
+    }
+    $scope.undergraduate=function() {
+        $scope.state.money *= 1;
+        sessionStorage.setItem('state', JSON.stringify($scope.state));
+        $window.location.href = '/createparty';
+    };
+    $scope.graduate=function() {
+        $scope.state.money *= .5;
+        sessionStorage.setItem('state', JSON.stringify($scope.state));
+        $window.location.href = '/createparty';
+    };
+    });
+</script>
 </body>
 </html>
