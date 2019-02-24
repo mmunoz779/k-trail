@@ -136,7 +136,6 @@ div.text {
     position: absolute;
     top:0;
     left:0;
-    clip: initial;
 }
 
 .invText {
@@ -175,4 +174,22 @@ div.text {
     top: 0;
     left: 0;
     bottom: 0;
+}
+
+.red {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.prosText {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.prospecting {
+    position: absolute;
+    top: 10%;
+    left: 33%;
 }
