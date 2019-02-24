@@ -6,8 +6,8 @@
   "money": 2000,
   "members": [{
     "name": "Driver",
-    "health": 100,
-    "food": 100,
+    "health": 10,
+    "food": 5,
     "ailments": [],
     "rations": 1
   }],
