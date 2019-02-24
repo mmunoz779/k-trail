@@ -36,7 +36,7 @@
     app.controller('WorldData', function ($scope, $http, $window) {
         $scope.state = JSON.parse(sessionStorage.getItem('state'));
 
-        if ($scope.state.locationType === 'town') {
+        if ($scope.state.locationType == 'town') {
             $window.location.href = '/DayPromptTown';
         }
 
