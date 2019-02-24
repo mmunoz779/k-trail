@@ -3,7 +3,7 @@
   "weather": "cold",
   "location": "Mackinac",
   "locationType": "town",
-  "money": 1000,
+  "money": 800,
   "members": [{
     "name": "Driver",
     "health": 10,
