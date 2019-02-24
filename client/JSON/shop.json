@@ -1,6 +1,6 @@
 {
-  "food": 5,
+  "food": 6,
   "clothes": 10,
-  "dogs": 20,
-  "sled": 15
+  "dogs": 50,
+  "sled": 20
 }

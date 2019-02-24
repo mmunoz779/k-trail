@@ -233,3 +233,8 @@ div.text {
     top: 5%;
 }
 
+.shopText {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
