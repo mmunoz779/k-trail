@@ -58,19 +58,18 @@
                 alert('You must have at least 1 dog');
             } else {
                 $scope.state.money -= $scope.calculateCost();
+                sessionStorage.setItem('state', JSON.stringify($scope.state));
+                $window.location.href = '/introduction';
             }
-            sessionStorage.setItem('state', JSON.stringify($scope.state));
-            $window.location.href = '/introduction';
-        }
-    };
+        };
 
-    $scope.calculateCost = function () {
-        var temp = ($scope.prices.food * parseInt($scope.state.items[0].food)) + ($scope.prices.dogs * parseInt($scope.state.dogs)) + ($scope.prices.sled * parseInt($scope.state.items[2].sledParts)) + ($scope.prices.clothes * parseInt($scope.state.items[1].clothes));
-        if (!isNaN(temp)) {
-            $scope.prevCost = temp;
-        }
-        return $scope.prevCost;
-    };
+        $scope.calculateCost = function () {
+            var temp = ($scope.prices.food * parseInt($scope.state.items[0].food)) + ($scope.prices.dogs * parseInt($scope.state.dogs)) + ($scope.prices.sled * parseInt($scope.state.items[2].sledParts)) + ($scope.prices.clothes * parseInt($scope.state.items[1].clothes));
+            if (!isNaN(temp)) {
+                $scope.prevCost = temp;
+            }
+            return $scope.prevCost;
+        };
 
     }).directive("limitTo", [function () {
         return {
