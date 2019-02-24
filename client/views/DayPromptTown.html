@@ -11,8 +11,6 @@
 </head>
 <body ng-app="myApp" ng-controller="WorldData" style="background-color:black;">
 
-
-
 <div class="bkgrnd">
     <img src="../assets/snow.gif" alt="snow" class="bksnow" style="width: 100%;" align="center">
     <img src="../assets/town.gif" alt="town" class="town"><br>
@@ -20,7 +18,7 @@
 
 
 <div class="townText">
-    <p>You Are In Town</p>
+    <h3>Welcome to {{state.location}}</h3>
     <p>Weather: {{state.weather}}</p>
     <p>Pace: {{state.currentPace * state.paceScalar}}</p>
     <p>Distance Traveled: {{state.distance}} miles </p>
@@ -61,18 +59,15 @@
             $window.location.href = '/shop';
         };
         $scope.Rest=function() {
-            $scope.incrementDay(true);
-            $scope.state.members.forEach(function (member) {
-                if (member.health < 10){
-                    member.health++;
-                }
+            $scope.incrementDay(false);
+            $scope.state.members.forEach((member) => {
+                member.health++;
             });
-        };
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
+            alert("You've rested for one day and all party members gained 1 health");
+        }
 
     });
 </script>
-
-<button class="help" onclick="window.location.href='/help'"> ? </button>
-
 </body>
 </html>
