@@ -28,7 +28,7 @@
     <button ng-click='incrementDay(true)'>Start Traveling</button>
     <button ng-click='prospect()'>Mine for Copper</button>
     <button ng-click='inventory()'>Check Inventory</button>
-    <button ng-click='viewparty()'>Party Status</button>
+    <button ng-click='viewParty()'>Party Status</button>
     <button ng-click='Rest()'>Stop to Rest</button>
 </div>
 <script>
@@ -71,14 +71,36 @@
             //random events
         };
 
+        $scope.updateHunger = function () {
+            $scope.state.members.forEach(function (member) {
+                member.food--;
+                if ($scope.state.items[0].food >= member.rations) {
+                    if (member.food === 4 && member.rations === (2)) {
+                        member.food++;
+                    } else {
+                        member.food += member.rations;
+                    }
+                    if (member.food === (5)) {
+                        member.health++;
+                    }
+                    $scope.state.items[0].food = $scope.state.items[0].food - member.rations;
+                }
+                if (member.food <= 0) {
+                    member.health--;
+                }
+            });
+        };
+
         $scope.incrementDay = function (hasTraveled) {
             if (hasTraveled) {
                 $scope.state.distance += Math.floor((Math.random() + .25) * ($scope.state.currentPace * $scope.state.paceScalar));
             }
+            console.log("test1");
             $scope.triggerEvent();
             $scope.updatePace();
             $scope.updateHunger();
             $scope.state.daysPassed += 1;
+            console.log("test2");
             sessionStorage.setItem('state', JSON.stringify($scope.state));
         };
 
@@ -88,8 +110,8 @@
             $window.location.href = '/prospecting';
         };
 
-        $scope.viewparty = function () {
-            $scope.sessionStorage.setItem('state', JSON.stringify($scope.state));
+        $scope.viewParty = function () {
+            sessionStorage.setItem('state', JSON.stringify($scope.state));
             $window.location.href = '/viewparty';
         };
 
@@ -104,21 +126,6 @@
             $window.location.href = '/inventory';
         };
 
-        $scope.updateHunger = function () {
-            $scope.state.members.forEach(function (member) {
-                member.food--;
-                if (member.food >= 4 && member.rations.equals(2)) {
-                    member.food++;
-                } else {
-                    member.food += member.rations;
-                }
-                if (member.food <= 0) {
-                    member.health--;
-                } else if (member.food.equals(5)) {
-                    member.health++;
-                }
-            })
-        }
     });
 
 </script>

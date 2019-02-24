@@ -26,7 +26,7 @@
 <p>You May:</p>
 <button ng-click='returntoday()'>Get on the Road</button>
 <button ng-click='inventory()'>Check Inventory</button>
-<button ng-click='viewparty()'>Party Status</button>
+<button ng-click="viewParty()">Party Status</button>
 <button ng-click='Rest()'>Stop to Rest</button>
 <button ng-click='shop()'>Go Shopping</button>
 </div>
@@ -49,7 +49,7 @@
             sessionStorage.setItem('state', JSON.stringify($scope.state));
             $window.location.href = '/inventory';
         };
-        $scope.viewparty=function() {
+        $scope.viewParty=function() {
             sessionStorage.setItem('state', JSON.stringify($scope.state));
             $window.location.href = '/viewparty';
         };
