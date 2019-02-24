@@ -80,7 +80,7 @@
         };
 
         $scope.prospect = function () {
-            $scope.incrementDay(false);
+            $scope.incrementDay(true);
             sessionStorage.setItem('state', JSON.stringify($scope.state));
             $window.location.href = '/prospecting';
         };
