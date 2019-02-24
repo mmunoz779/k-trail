@@ -41,6 +41,9 @@ router.get('/DayPromptTown', function (req, res, next) {
 router.get('/prospecting', function (req, res, next) {
     res.render('prospecting.html');
 });
+router.get('/death', function (req, res, next) {
+    res.render('death.html');
+});
 router.use('/*', function (req, res) {
     res.status(404);
     res.send();
