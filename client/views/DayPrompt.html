@@ -41,17 +41,20 @@
         if (hasTraveled) {
             $scope.state.distance += Math.floor((Math.random() + .25) * ($scope.state.currentPace * $scope.state.paceScalar));
         }
-        //triggerEvent();
+        triggerEvent();
         $scope.state.daysPassed += 1;
         sessionStorage.setItem('state', JSON.stringify($scope.state));
-        //$window.location.href = '/DayPrompt';
     };
 
     $scope.triggerEvent=function() {
+        //calculate weather
 
+        //distance events
+        //random events
     }
 
     $scope.prospect=function() {
+        incrementDay(false);
         sessionStorage.setItem('state', JSON.stringify($scope.state));
         $window.location.href = '/prospecting';
     };
@@ -64,6 +67,7 @@
         $window.location.href = '/viewparty';
     };
     $scope.Rest=function() {
+        incrementDay(false);
         sessionStorage.setItem('state', JSON.stringify($scope.state));
         $window.location.href = '/Rest';
     };
