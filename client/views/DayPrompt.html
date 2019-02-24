@@ -71,7 +71,14 @@
 
         $scope.triggerEvent = function () {
             //weather events
+            if (Math.random() <= 0.25) {
+                $scope.state.weather = $scope.randomEvents[Math.floor(Math.random() * 6)];
+            }
             //distance events
+            var beenMarie = false;
+            var beenmunising = false;
+            let tempDistance = $scope.state.distance;
+            //if (tempDistance >=)
             //random events
         };
 
@@ -100,17 +107,15 @@
             if (hasTraveled) {
                 $scope.state.distance += Math.floor((Math.random() + .25) * ($scope.state.currentPace * $scope.state.paceScalar));
             }
-            console.log("test1");
             $scope.triggerEvent();
             $scope.updatePace();
             $scope.updateHunger();
             $scope.state.daysPassed += 1;
-            console.log("test2");
             sessionStorage.setItem('state', JSON.stringify($scope.state));
         };
 
         $scope.prospect = function () {
-            $scope.incrementDay(true);
+            $scope.incrementDay(false);
             sessionStorage.setItem('state', JSON.stringify($scope.state));
             $window.location.href = '/prospecting';
         };

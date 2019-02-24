@@ -1,9 +1,6 @@
-{
-  "Mackinac City": 0,
-  "Sault Ste. Marie": 1,
-  "Munising": 2,
-  "Iron Mountain": 3,
-  "Houghton": 4,
-    
-  }
+[ {"Mackinac City": 0 },
+  {"Sault Ste. Marie": 1},
+  {"Munising": 2},
+  {"Iron Mountain": 3},
+  {"Houghton": 4}]
 
