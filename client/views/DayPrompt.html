@@ -18,15 +18,14 @@
 </div>
 
 
-
-
 <div class="dayText">
 <p>Weather: {{state.weather}}</p>
-<p>Pace: {{state.pace}}</p>
+<p>Pace: {{state.currentPace}}</p>
+<p>Days passed: {{state.daysPassed}}</p>
 <p>Distance Traveled: {{state.distance}} miles</p>
 
 <p>You May:</p>
-    <button ng-click='returntoday()'>Start to Traveling</button>
+    <button ng-click='incrementDay(true)'>Start Traveling</button>
     <button ng-click='prospect()'>Mine for Copper</button>
     <button ng-click='inventory()'>Check Inventory</button>
     <button ng-click='Pace()'>Change Pace</button>
@@ -37,10 +36,21 @@
     var app = angular.module('myApp', []);
     app.controller('WorldData', function ($scope, $http, $window) {
     $scope.state=JSON.parse(sessionStorage.getItem('state'));
-    $scope.returntoday=function() {
+
+    $scope.incrementDay=function(hasTraveled) {
+        if (hasTraveled) {
+            $scope.state.distance += Math.floor((Math.random() + 0.15) * $scope.state.currentPace);
+        }
+        //triggerEvent();
+        $scope.state.daysPassed += 1;
         sessionStorage.setItem('state', JSON.stringify($scope.state));
         $window.location.href = '/DayPrompt';
     };
+
+    $scope.triggerEvent=function() {
+
+    }
+
     $scope.prospect=function() {
         sessionStorage.setItem('state', JSON.stringify($scope.state));
         $window.location.href = '/prospecting';

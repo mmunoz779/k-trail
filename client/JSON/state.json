@@ -12,6 +12,7 @@
     "rations": 1
   }],
   "distance": 0,
+  "daysPassed": 0,
   "items": [{"food":0},{"clothes": 0}, {"sledParts": 0}],
   "currentPace": 20,
   "sled": true,
